@@ -1,133 +1,135 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "elva-serverless-onboarding",
+  base: "/serverless-onboarding/",
   description: "elva-onboarding-wip",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Home", link: "/" },
+      { text: "Examples", link: "/markdown-examples" },
     ],
 
     sidebar: [
-
-
-      { text: 'Outline', link: '/outline' },
+      { text: "Outline", link: "/outline" },
       {
-        text: '1. Introduction to AWS', link: '/module-1',
+        text: "1. Introduction to AWS",
+        link: "/module-1",
         items: [
           {
-            text: 'Cloud Computing',
-            link: '/module-1#title',
+            text: "Cloud Computing",
+            link: "/module-1#title",
           },
           {
-            text: 'Computing Concepts',
-            link: '',
+            text: "Computing Concepts",
+            link: "",
           },
           {
-            text: 'Use Cases',
-            link: '',
-          }
-        ]
-
+            text: "Use Cases",
+            link: "",
+          },
+        ],
       },
       {
-        text: '2. Serverless Computing Concepts', link: '/module-2',
+        text: "2. Serverless Computing Concepts",
+        link: "/module-2",
         items: [
           {
-            text: 'AWS Lambda',
-            link: ''
+            text: "AWS Lambda",
+            link: "",
           },
           {
-            text: 'API Gateway',
-            link: ''
-          }
-        ]
+            text: "API Gateway",
+            link: "",
+          },
+        ],
       },
       {
-        text: '3. Serverless Development and Deployment', link: '/module-3',
+        text: "3. Serverless Development and Deployment",
+        link: "/module-3",
         items: [
           {
-            text: 'Framewors',
-            link: ''
+            text: "Framewors",
+            link: "",
           },
           {
-            text: 'CDK',
-            link: ''
+            text: "CDK",
+            link: "",
           },
           {
-            text: 'SST',
-            link: ''
+            text: "SST",
+            link: "",
           },
           {
-            text: 'Serverless*',
-            link: ''
+            text: "Serverless*",
+            link: "",
           },
           {
-            text: 'CI/CD',
-            link: ''
-          }
-        ]
-
+            text: "CI/CD",
+            link: "",
+          },
+        ],
       },
       {
-        text: '4. Serverless Data Storage and Databases',
-        link: '/module-3',
+        text: "4. Serverless Data Storage and Databases",
+        link: "/module-3",
         items: [
           {
-            text: 'S3',
-            link: ''
+            text: "S3",
+            link: "",
           },
           {
-            text: 'DynamoDB',
-            link: ''
+            text: "DynamoDB",
+            link: "",
           },
           {
-            text: 'RDS*',
-            link: ''
-          }
-        ]
+            text: "RDS*",
+            link: "",
+          },
+        ],
       },
       {
-        text: '5. Advanced Serverless Topics',
-        link: '/module-3',
+        text: "5. Advanced Serverless Topics",
+        link: "/module-3",
         items: [
           {
-            text: 'Event-Driven Architectures',
-            link: ''
+            text: "Event-Driven Architectures",
+            link: "",
           },
           {
-            text: 'State Machines',
-            link: ''
+            text: "State Machines",
+            link: "",
           },
           {
-            text: 'Authentication and Authorization',
-            link: ''
+            text: "Authentication and Authorization",
+            link: "",
           },
           {
-            text: 'Monitoring & Debugging',
-            link: ''
-          }
-        ]
+            text: "Monitoring & Debugging",
+            link: "",
+          },
+        ],
       },
       {
-        text: '8. Serverless Optimization and Best Practices', link: '/module-3',
+        text: "8. Serverless Optimization and Best Practices",
+        link: "/module-3",
         items: [
           {
-            text: 'Cost Optimization',
-            link: 'test'
+            text: "Cost Optimization",
+            link: "test",
           },
           {
-            text: 'Serverless Security',
-            link: 'test'
-          }]
+            text: "Serverless Security",
+            link: "test",
+          },
+        ],
       },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+    ],
+  },
+});
