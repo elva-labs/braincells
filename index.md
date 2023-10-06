@@ -3,30 +3,13 @@
 layout: home
 
 hero:
-  name: "elva-serverless-onboarding"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "Elva Group"
+  text: "AWS & Serverless"
+  tagline: onboarding 
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-    - theme: alt
-      text: AWS & Serverelss
-      link: /aws-intro
+      text: Let's go! 
+      link: /outline
 
-
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 

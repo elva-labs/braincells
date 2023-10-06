@@ -6,11 +6,7 @@ export default defineConfig({
   base: "/serverless-onboarding/",
   description: "elva-onboarding-wip",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
-    ],
+    nav: [{ text: "Home", link: "/" }],
 
     sidebar: [
       { text: "Outline", link: "/outline" },
