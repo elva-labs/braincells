@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  title: 'Elva Onboarding',
   base: "/serverless-onboarding/",
   description: "elva-onboarding-wip",
   themeConfig: {
@@ -21,8 +22,23 @@ export default defineConfig({
             link: '/module-1/use-case',
           },
           {
+            text: 'Prerequisites',
+            link: '/module-1/prerequisites',
+          },
+          {
+
             text: 'Your account',
             link: '/module-1/account',
+          },
+          {
+
+            text: 'Your First lambda',
+            link: '/module-1/hello-world-lambda',
+          },
+          {
+
+            text: 'Your First API',
+            link: '/module-1/your-first-api',
           },
         ]
       },
