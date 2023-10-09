@@ -14,18 +14,18 @@ export default defineConfig({
         link: "/module-1",
         items: [
           {
-            text: "Cloud Computing",
-            link: "/module-1#title",
+            text: 'Cloud Computing',
+            link: '/module-1/cloud-computing',
           },
           {
-            text: "Computing Concepts",
-            link: "",
+            text: 'Use Case',
+            link: '/module-1/use-case',
           },
           {
-            text: "Use Cases",
-            link: "",
+            text: 'Your account',
+            link: '/module-1/account',
           },
-        ],
+        ]
       },
       {
         text: "2. Serverless Computing Concepts",
