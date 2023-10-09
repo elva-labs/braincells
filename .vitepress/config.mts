@@ -11,7 +11,6 @@ export default defineConfig({
       { text: "Outline", link: "/outline" },
       {
         text: "1. Introduction to AWS",
-        link: "/module-1",
         items: [
           {
             text: 'Cloud Computing',
