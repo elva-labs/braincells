@@ -2,7 +2,6 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "elva-serverless-onboarding",
   base: "/serverless-onboarding/",
   description: "elva-onboarding-wip",
   themeConfig: {
@@ -121,7 +120,7 @@ export default defineConfig({
             link: "test",
           },
         ],
-      },
+      }
     ],
 
     socialLinks: [
