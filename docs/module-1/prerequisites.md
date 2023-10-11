@@ -11,7 +11,7 @@ Use the package manager for your specific OS, if not, download and install the b
 1. NodeJS & npm ([here](https://nodejs.org/en) or using [volta](https://docs.volta.sh/guide/))
 2. [git](https://git-scm.com/)
 3. [aws-cli](https://aws.amazon.com/cli/)
-
+4. [pnpm](https://pnpm.io/installation)
 
 Check your install, note that the versions will differ in the future (do not worry).
 ```bash

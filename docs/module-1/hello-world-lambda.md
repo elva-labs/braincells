@@ -28,7 +28,7 @@ CDK is an open-source software development framework provided by Amazon Web Serv
 CDK simplifies the process of defining and managing cloud infrastructure, making it easier for developers to create, deploy, and manage AWS resources using their preferred programming languages and development practices. It's particularly useful for projects that require the flexibility and expressiveness of code while harnessing the power of AWS cloud services.
 
 ### Serverless Stack (SST)
-Serverless Stack is an open-source framework for building serverless applications on AWS (Amazon Web Services). It simplifies the process of developing, deploying, and managing serverless applications by providing a set of abstractions and tools. Serverless Stack typically leverages AWS services like AWS Lambda, API Gateway, DynamoDB, and others to create scalable and cost-effective serverless applications.
+(Serverless Stack)[https://sst.dev/] is an open-source framework for building serverless applications on AWS (Amazon Web Services). It simplifies the process of developing, deploying, and managing serverless applications by providing a set of abstractions and tools. Serverless Stack typically leverages AWS services like AWS Lambda, API Gateway, DynamoDB, and others to create scalable and cost-effective serverless applications.
 
 ## Exercise
 
@@ -39,7 +39,9 @@ Serverless Stack is an open-source framework for building serverless application
 
 
 ### Creating a Project
-...
+```bash
+pnpm create sst my-sst-app
+```
 
 ### Writing the Lambda
 ...
