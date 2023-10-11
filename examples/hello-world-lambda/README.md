@@ -18,3 +18,4 @@ curl https://ssuedzhr7fmkkprws3w6lms2k40ajndt.lambda-url.eu-north-1.on.aws/ | jq
 #     "hello": "world"
 #   }
 ```
+5. pnpm run remove
