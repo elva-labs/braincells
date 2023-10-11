@@ -11,7 +11,7 @@ curl https://ssuedzhr7fmkkprws3w6lms2k40ajndt.lambda-url.eu-north-1.on.aws/ | jq
 #   }
 ```
 3. pnpm run deploy
-4. 
+4. curl <lambda-url>
 ```bash
 curl https://ssuedzhr7fmkkprws3w6lms2k40ajndt.lambda-url.eu-north-1.on.aws/ | jq
 #   {
