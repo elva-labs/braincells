@@ -33,11 +33,24 @@ export const create = async (
   const payload = JSON.parse(event.body ?? '') as Note;
   const user = event.headers['x-api-key']!;
 
-  const note = await notes.upsert(user, payload);
+  const note = await notes.create(user, payload);
 
   return {
     statusCode: 201,
     body: JSON.stringify(note),
+  };
+};
+
+export const remove = async (
+  event: APIGatewayProxyEvent,
+): Promise<APIGatewayProxyResultV2> => {
+  const noteId = event.pathParameters!.id!;
+  const user = event.headers['x-api-key']!;
+
+  await notes.remove(user, +noteId);
+
+  return {
+    statusCode: 204,
   };
 };
 

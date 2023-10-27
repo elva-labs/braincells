@@ -9,6 +9,7 @@ export function API({ stack }: StackContext) {
       'GET /notes': 'src/functions/notes.getAll',
       'POST /notes': 'src/functions/notes.create',
       'GET /notes/{id}': 'src/functions/notes.getSingle',
+      'DELETE /notes/{id}': 'src/functions/notes.remove',
     },
     defaults: {
       function: {

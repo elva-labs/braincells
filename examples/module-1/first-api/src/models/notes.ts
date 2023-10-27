@@ -1,5 +1,6 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import {
+  DeleteCommand,
   DynamoDBDocumentClient,
   PutCommand,
   QueryCommand,
@@ -11,14 +12,15 @@ export interface Note {
 }
 
 const TABLE = process.env.TABLE!;
-const CLIENT = DynamoDBDocumentClient.from(new DynamoDBClient(), {
+
+const DbClient = DynamoDBDocumentClient.from(new DynamoDBClient(), {
   marshallOptions: {
     removeUndefinedValues: true,
   },
 });
 
-export const upsert = async (user: string, note: Note): Promise<Note> => {
-  await CLIENT.send(
+export const create = async (user: string, note: Note): Promise<Note> => {
+  await DbClient.send(
     new PutCommand({
       TableName: TABLE,
       Item: {
@@ -33,7 +35,7 @@ export const upsert = async (user: string, note: Note): Promise<Note> => {
 };
 
 export const getAll = async (user: string): Promise<Note[]> => {
-  const res = await CLIENT.send(
+  const res = await DbClient.send(
     new QueryCommand({
       TableName: TABLE,
       KeyConditionExpression: 'pk = :pk',
@@ -43,7 +45,7 @@ export const getAll = async (user: string): Promise<Note[]> => {
     }),
   );
   const notes = res.Items?.map((item) => ({
-    id: item.pk,
+    id: item.sk,
     text: item.text,
   }));
 
@@ -54,7 +56,7 @@ export const getById = async (
   user: string,
   id: number,
 ): Promise<Note | null> => {
-  const res = await CLIENT.send(
+  const res = await DbClient.send(
     new QueryCommand({
       TableName: TABLE,
       KeyConditionExpression: 'pk = :pk AND sk = :sk',
@@ -65,11 +67,21 @@ export const getById = async (
     }),
   );
   const note = res.Items?.map((t) => ({
-    id: t.pk,
+    id: t.sk,
     text: t.text,
   })).pop() as Note;
 
-  console.log({ note });
-
   return note || null;
+};
+
+export const remove = async (user: string, id: number): Promise<void> => {
+  await DbClient.send(
+    new DeleteCommand({
+      TableName: TABLE,
+      Key: {
+        pk: user,
+        sk: id,
+      },
+    }),
+  );
 };
