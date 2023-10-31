@@ -41,7 +41,7 @@ CDK simplifies the process of defining and managing cloud infrastructure, making
 
 ## Exercise
 
-From the start, we'll do most things manually. However, there are a broad rage of project-generators one could use down the line to make things faster (and maybe bore reliable).
+We'll do most things manually in the start. However, there are a broad rage of project-generators one could use down the line to make things faster (and maybe more reliable).
 
 1. Create a new project
 2. Write a lambda 
