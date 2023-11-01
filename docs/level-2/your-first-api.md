@@ -25,18 +25,39 @@ REST APIs are widely used for building web services, and they provide a scalable
 
 ## Exercise
 
-This time you'll have to do some more work. I want you to create a CRUD api for todo-notes.
+This time you'll have to do some more work. I want you to create a CRUD api for todo-notes. Move into the project folder `cd exercises/first-api` and get to work.
 
-You're done once you can run the test found in the boilerplate project.
+> You're done once you can run the all the test found in the boilerplate project.
 
-Use whatever search engine and/or documentation you can find to make things work. The idea here is to get you up to speed with the AWS tooling and also be able to make use of the broad range of documentation you can find online.
+Use whatever search engine and/or documentation you can find to make things work. The idea here is to get you up to speed with the AWS tooling and also be able to make use of the broad range of documentation available online.
 
 :::tip
 If you get stuck, check out the example folder to get pointed some idea of how you could solve it.
 :::
 
-1. Clone the exercise boilerplate
+1. Clone the project and move to the boilerplate location 
 2. Install the dependencies `pnpm install`
-3. Run the tests (`pnpm run test`) which will fail, your task is to create the required endpoints to make them work. You'll find the API requirements by looking at the tests.
+3. Deploy the infrastructure & start development `pnpm dev`
+3. Run the tests (`pnpm run test`), your task is to create the required endpoints to make them work. You'll find the API requirements by looking at the tests.
 4. Push your solution to your own repository
+5. Tell us that your done & let's descuss your provided solution
+
+### Task Details
+
+Add endpoints for each (CRUD) action we want to perform on the `Note` data structure.
+
+
+| Method | Status     | Response Body |
+|---     |---         |---            |
+|GET     | 200\|404   | Note          |
+|GET     | 200        | Note[]        |
+|POST    | 201        | Note          |
+|DELTE   | 204        |               |
+
+### Validation
+`pnpm run test`
+
+![test-image](../assets/2023-11-01_08-36.png)
+
+
 
