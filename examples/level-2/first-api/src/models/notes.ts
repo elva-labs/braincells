@@ -20,18 +20,22 @@ const DbClient = DynamoDBDocumentClient.from(new DynamoDBClient(), {
 });
 
 export const create = async (user: string, note: Note): Promise<Note> => {
+  const newNote: Note = {
+    id: Math.round(Math.random() * 100_000_000),
+    text: note.text,
+  };
   await DbClient.send(
     new PutCommand({
       TableName: TABLE,
       Item: {
         pk: user,
-        sk: Math.round(Math.random() * 100_000_000),
+        sk: newNote.id,
         ...note,
       },
     }),
   );
 
-  return note;
+  return newNote;
 };
 
 export const getAll = async (user: string): Promise<Note[]> => {

@@ -41,7 +41,7 @@ CDK simplifies the process of defining and managing cloud infrastructure, making
 
 ## Exercise
 
-From the start, we'll do most things manually. However, there are a broad rage of project-generators one could use down the line to make things faster (and maybe bore reliable).
+We'll do most things manually in the start. However, there are a broad rage of project-generators one could use down the line to make things faster (and maybe more reliable).
 
 1. Create a new project
 2. Write a lambda 
@@ -225,7 +225,21 @@ Run `pnpm run deploy` to run the `deploy` script that we defined in the `package
 run sst and deploy our infrastructure. Take a COB (HALT/COFFEE BREAK) while everything settles in. 
 
 ### 7. Test
-...
+The terminal will eventually output the link to your lambda. Once you use that link in a broswer or `curl` a request / event will be triggered to AWS that will invoke the deployed lambda and produce a response. 
+
+
+```bash
+curl https://ksei4ctj3fqms4o3n4t2wnrdem0okgrp.lambda-url.eu-north-1.on.aws/ 
+
+# {"hello":"world"}
+
+```
+
+You'll be able to see the execution logs in the terminal.
+
+
+
+> Note: during dev-move, requests are proxied to your local system, if you instead use the deploy cmd, the code will be packged and published to AWS, and then the "actual" lambda srouce in the cloud will produce the response.
 
 ### 8. Remove
 ...
