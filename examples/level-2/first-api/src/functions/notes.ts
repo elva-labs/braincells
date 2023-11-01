@@ -7,10 +7,15 @@ export const getSingle = async (
 ): Promise<APIGatewayProxyResultV2> => {
   const noteId = event.pathParameters!.id!;
   const user = event.headers['x-api-key']!;
+  const note = await notes.getById(user, +noteId);
+
+  if (!note) {
+    return { statusCode: 404 };
+  }
 
   return {
     statusCode: 200,
-    body: JSON.stringify(await notes.getById(user, +noteId)),
+    body: JSON.stringify(note),
   };
 };
 
