@@ -4,10 +4,10 @@ import { DB } from './db-stack';
 export function API({ stack }: StackContext) {
   const dbStack = use(DB);
 
-  const api = new Api(stack, 'rest-api', {
+  const api = new Api(stack, 'restApi', {
     routes: {
       'GET /notes': 'src/functions/notes.getAll',
-      // TODO: create the required endpoints here
+      // TODO: add your endpoints here
     },
     defaults: {
       function: {

@@ -1,12 +1,13 @@
 {
-  "name": "rest-api",
+  "name": "level-2-rest-exercise",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "sst dev",
     "deploy": "sst deploy",
-    "remove": "sst remove"
+    "remove": "sst remove",
+    "test": "sst bind vitest run"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",

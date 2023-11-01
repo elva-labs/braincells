@@ -1,21 +1,14 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResultV2 } from 'aws-lambda';
-
 import * as notes from '../models/notes';
 
-export const getSingle = async (
+export const getAll = async (
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResultV2> => {
-  const noteId = event.pathParameters?.id;
   const user = event.headers['x-api-key']!;
-
-  if (!noteId) {
-    return {
-      statusCode: 401,
-    };
-  }
+  const listOfNotes = await notes.getAll(user);
 
   return {
     statusCode: 200,
-    body: JSON.stringify(await notes.getById(user, +noteId)),
+    body: JSON.stringify(listOfNotes),
   };
 };
