@@ -46,51 +46,40 @@ export default defineConfig({
       },
       {
         text: '3. Serverless Development and Deployment',
-        link: '/module-3',
         items: [
           {
             text: 'Framewors',
-            link: '',
-          },
-          {
-            text: 'CDK',
-            link: '',
+            link: '/level-3/frameworks',
           },
           {
             text: 'SST',
-            link: '',
+            link: '/level-3/sst',
           },
           {
-            text: 'Serverless*',
-            link: '',
-          },
-          {
-            text: 'CI/CD',
-            link: '',
+            text: 'Creating & Running a Project',
+            link: '/level-3/project',
           },
         ],
       },
       {
         text: '4. Serverless Data Storage and Databases',
-        link: '/module-3',
         items: [
           {
             text: 'S3',
-            link: '',
+            link: '/level-4/s3',
           },
           {
             text: 'DynamoDB',
-            link: '',
+            link: '/level-4/dynamo',
           },
           {
-            text: 'RDS*',
-            link: '',
+            text: 'Building an Image Service',
+            link: '/level-4/image-service',
           },
         ],
       },
       {
         text: '5. Advanced Serverless Topics',
-        link: '/module-3',
         items: [
           {
             text: 'Event-Driven Architectures',
@@ -101,8 +90,16 @@ export default defineConfig({
             link: '',
           },
           {
+            text: 'Building an Image Service',
+            link: '/level-5/image-service',
+          },
+          {
             text: 'Authentication and Authorization',
             link: '',
+          },
+          {
+            text: 'Secure you APIs',
+            link: '/level-5/image-service',
           },
           {
             text: 'Monitoring & Debugging',
@@ -115,12 +112,16 @@ export default defineConfig({
         link: '/module-3',
         items: [
           {
+            text: 'CI/CD',
+            link: '',
+          },
+          {
             text: 'Cost Optimization',
-            link: 'test',
+            link: '',
           },
           {
             text: 'Serverless Security',
-            link: 'test',
+            link: '',
           },
         ],
       },
