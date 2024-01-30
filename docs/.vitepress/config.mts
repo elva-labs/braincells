@@ -83,33 +83,33 @@ export default defineConfig({
         items: [
           {
             text: 'Event-Driven Architectures',
-            link: '',
+            link: '/level-5/eda-serverless',
           },
           {
             text: 'State Machines',
+            link: '/level-5/statemachines',
+          },
+          {
+            text: 'Building a Weather Report Service',
+            link: '/level-5/weather-report',
+          },
+          {
+            text: 'Authentication and Authorization (TODO)',
             link: '',
           },
           {
-            text: 'Building an Image Service',
+            text: 'Secure you APIs (TODO)',
             link: '/level-5/image-service',
           },
           {
-            text: 'Authentication and Authorization',
-            link: '',
-          },
-          {
-            text: 'Secure you APIs',
-            link: '/level-5/image-service',
-          },
-          {
-            text: 'Monitoring & Debugging',
+            text: 'Monitoring & Debugging (TODO)',
             link: '',
           },
         ],
       },
       {
-        text: '8. Serverless Optimization and Best Practices',
-        link: '/module-3',
+        text: '8. Serverless Optimization and Best Practices (TODO)',
+        link: '',
         items: [
           {
             text: 'CI/CD',
