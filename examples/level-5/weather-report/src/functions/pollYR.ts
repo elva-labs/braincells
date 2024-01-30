@@ -1,8 +1,7 @@
 import * as z from 'zod';
 import { Config } from 'sst/node/config';
 
-import { cities } from '../data/cities';
-import { Reading } from './shared';
+import { Reading, cities } from './shared';
 
 export const main = async (): Promise<Reading> => {
   const response = await fetch(
