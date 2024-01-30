@@ -1,10 +1,10 @@
 import * as z from 'zod';
 import { Config } from 'sst/node/config';
 
-import { cities } from '../data/cities';
+import { cities } from '../sahred';
 import { Reading } from './shared';
 
-export const main = async (): Promise<Reading | null> => {
+export const main = async (): Promise<Reading> => {
   const res = await fetch(
     `${Config.SMHI_ENDPOINT}/lon/${cities[0].longitude}/lat/${cities[0].latitude}/data.json`,
   );
@@ -12,7 +12,7 @@ export const main = async (): Promise<Reading | null> => {
   const result = responseSchema.safeParse(data);
 
   if (!result.success) {
-    return null;
+    throw new Error('Failed to parse response from SMHI');
   }
 
   const { timeSeries } = result.data;
