@@ -1,0 +1,19 @@
+{
+  "name": "weather-tracker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sst dev",
+    "build.disabled": "sst build --stage dev",
+    "deploy.disabled": "sst deploy --stage prod",
+    "remove": "sst remove",
+    "check": "tsc --noEmit",
+    "test": "sst bind vitest run"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@aws-sdk/client-sfn": "^3.485.0",
+    "zod": "^3.22.4"
+  }
+}
