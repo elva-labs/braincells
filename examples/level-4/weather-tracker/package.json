@@ -8,10 +8,8 @@
     "build": "sst build --stage dev",
     "deploy": "sst deploy --stage prod",
     "remove": "sst remove",
-    "console": "sst console",
-    "typecheck": "tsc --noEmit",
-    "test": "sst bind vitest run",
-    "test:bk": "sst bind \"vitest run\""
+    "check": "tsc --noEmit",
+    "test": "sst bind vitest run"
   },
   "devDependencies": {},
   "dependencies": {
