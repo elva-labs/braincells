@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "sst dev",
-    "build": "sst build --stage dev",
     "deploy": "sst deploy --stage prod",
     "remove": "sst remove",
     "check": "tsc --noEmit",
