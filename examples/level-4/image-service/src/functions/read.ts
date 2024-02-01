@@ -22,8 +22,6 @@ export const main = async (
 
   if (!buf) return { statusCode: StatusCodes.NOT_FOUND };
 
-  console.log({ contentType });
-
   return {
     statusCode: StatusCodes.TEMPORARY_REDIRECT,
     headers: {
