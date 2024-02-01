@@ -7,16 +7,10 @@ export function API({ stack }: StackContext) {
   );
 
   const api = new Api(stack, 'transformationAPI', {
-    routes: {
-      'PUT        /images': 'src/functions/upload.main',
-      'GET        /images/{id}': 'src/functions/read.main',
-      'DELETE     /images/{id}': 'src/functions/delete.main',
-    },
+    routes: {},
 
     defaults: {
-      function: {
-        bind: [originalImageBucket, transformedImageBucket],
-      },
+      function: {},
     },
   });
 
