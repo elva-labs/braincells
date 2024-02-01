@@ -81,3 +81,7 @@ curl -L <endpoint>/images/09602343-80aa-4e87-b71f-2c71f61f1040\?w\=150\&h\=150 -
 5. **DynamoDB Integration**: Develop functionality for storing and retrieving user-specific default transformations in DynamoDB.
 
 6. **Testing**: Run the test that exist in the boiler-project, you are done once they exectue properly.
+
+Once your're done you should be able to run the end-to-end tests using `pnpm run test`
+
+![test-img](../assets/2024-02-01_16-36.png)
