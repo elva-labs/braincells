@@ -12,7 +12,8 @@ export async function main(event: SQSEvent) {
 
     const s3Object = s3Event.Records.pop()!;
 
-    return Image.Mutations.createDefaultTransformation(s3Object.s3.object.key);
+    // TODO: RM all images that begins with name;
+    return Image.Mutations.createDefaultTransformations(s3Object.s3.object.key);
   });
 
   await Promise.allSettled(tasks);

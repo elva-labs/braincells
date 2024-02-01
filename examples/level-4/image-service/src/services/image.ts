@@ -7,16 +7,21 @@ import {
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import Sharp from 'sharp';
 import { Bucket } from 'sst/node/bucket';
+import md5 from 'md5';
 
 const S3_CLIENT = new S3Client({});
 const EXPIRATION_TIME = 600; // Presigned Url is active for 10 minutes
 
 export namespace Image {
   export namespace Read {
-    export const get = async (
-      bucket: string,
-      key: string,
-    ): Promise<string | null> => await generatePresignedUrl(bucket, key);
+    /*
+     * Returns a presigned url to given asset
+     */
+    export const redirect = async (key: string): Promise<string> =>
+      await generatePresignedUrl(
+        Utils.getBucketName(Shared.Variant.Transform),
+        key,
+      );
 
     export const file = async (
       key: string,
@@ -40,40 +45,31 @@ export namespace Image {
       bucket: string,
       key: string,
       buf?: Buffer,
-    ): Promise<string | null> => {
+    ): Promise<string> => {
       if (!buf) {
-        try {
-          return await getSignedUrl(
-            S3_CLIENT,
-            new GetObjectCommand({
-              Bucket: bucket,
-              Key: key,
-            }),
-            {
-              expiresIn: EXPIRATION_TIME,
-            },
-          );
-        } catch (err) {
-          console.log('error: ', err);
-        }
+        return await getSignedUrl(
+          S3_CLIENT,
+          new GetObjectCommand({
+            Bucket: bucket,
+            Key: key,
+          }),
+          {
+            expiresIn: EXPIRATION_TIME,
+          },
+        );
       } else {
-        try {
-          return await getSignedUrl(
-            S3_CLIENT,
-            new PutObjectCommand({
-              Bucket: bucket,
-              Key: key,
-              Body: buf,
-            }),
-            {
-              expiresIn: EXPIRATION_TIME,
-            },
-          );
-        } catch (err) {
-          console.log('error', err);
-        }
+        return await getSignedUrl(
+          S3_CLIENT,
+          new PutObjectCommand({
+            Bucket: bucket,
+            Key: key,
+            Body: buf,
+          }),
+          {
+            expiresIn: EXPIRATION_TIME,
+          },
+        );
       }
-      return null;
     };
   }
 
@@ -95,26 +91,25 @@ export namespace Image {
     };
 
     export const adhocTransform = async (
+      key: string,
       buf: Shared.File,
       contentType: string,
-      opt: {},
-    ): Promise<void> => {
-      try {
-        const variantBuf = await Image.Utils.resizeImage(buf, {
-          height: 100,
-          width: 100,
-        });
-        const variantKey = Utils.generateImageKey(contentType);
+      opt: {
+        height: number;
+        width: number;
+      } = { height: 100, width: 100 },
+    ): Promise<string> => {
+      const variantBuf = await Image.Utils.resizeImage(buf, opt);
+      const variantName = Utils.generateImageKey(key, opt);
 
-        await write({
-          key: variantKey,
-          buf: variantBuf,
-          location: Shared.Variant.Transform,
-          contentType: contentType,
-        });
-      } catch (err) {
-        console.log('error', err);
-      }
+      await write({
+        key: variantName,
+        buf: variantBuf,
+        location: Shared.Variant.Transform,
+        contentType: contentType,
+      });
+
+      return variantName;
     };
 
     export const write = async (
@@ -130,7 +125,7 @@ export namespace Image {
       );
     };
 
-    export const createDefaultTransformation = async (
+    export const createDefaultTransformations = async (
       key: string,
     ): Promise<void> => {
       const { contentType, buf } = await Image.Read.file(
@@ -138,9 +133,13 @@ export namespace Image {
         Shared.Variant.Original,
       );
 
-      for (let size in DEFAULT_SETTINGS) {
-        const key = await Mutations.adhocTransform(buf, contentType, {});
-      }
+      await Mutations.write({
+        key,
+        buf,
+        location: Shared.Variant.Transform,
+        contentType,
+      });
+      await Mutations.adhocTransform(key, buf, contentType);
     };
   }
 
@@ -163,9 +162,9 @@ export namespace Image {
       name: string,
       settings: any = {},
     ): string => {
-      const md5 = JSON.stringify(settings ?? '{}');
+      const settingsHash = md5(JSON.stringify(settings ?? '{}'));
 
-      return `${name}-${md5} `;
+      return `${name}-${settingsHash} `;
     };
   }
 
@@ -185,9 +184,3 @@ export namespace Image {
     }
   }
 }
-
-const DEFAULT_SETTINGS = {
-  Small: 100,
-  Medium: 200,
-  Large: 300,
-};

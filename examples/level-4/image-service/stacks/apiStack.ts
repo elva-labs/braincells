@@ -8,11 +8,9 @@ export function API({ stack }: StackContext) {
 
   const api = new Api(stack, 'transformationAPI', {
     routes: {
-      'DELETE     /image/{id}': 'src/functions/deleteImage.main',
-      'PUT        /images/{id}/transform':
-        'src/functions/putCustomTransformation.main',
-      'PUT        /images/{id}': 'src/functions/putStandardTransformation.main',
-      'GET        /images/{id}': 'src/functions/getImage.main',
+      'PUT        /images': 'src/functions/upload.main',
+      'GET        /images/{id}': 'src/functions/read.main',
+      'DELETE     /images/{id}': 'src/functions/delete.main',
     },
 
     defaults: {

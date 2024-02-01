@@ -7,10 +7,10 @@ export function ImageTransformationStack({ stack }: StackContext) {
    * Quees
    */
   const transformationQueue = new Queue(stack, 'ImageTransformationQueue', {
-    consumer: 'src/functions/transformationConsumer.main',
+    consumer: 'src/functions/createDefaultTransformation.main',
   });
   const deletionQueue = new Queue(stack, 'ImageDeletionQueue', {
-    consumer: 'src/functions/deletionConsumer.main',
+    consumer: 'src/functions/deleteTransformations.main',
   });
 
   /**

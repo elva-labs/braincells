@@ -1,20 +1,14 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResultV2 } from 'aws-lambda';
 import lambdaFileParser from 'lambda-multipart-parser';
-import { z } from 'zod';
 import { StatusCodes } from 'http-status-codes';
+import * as uuid from 'uuid';
 
 import { Image } from '../services/image';
 
 export const main = async (
   event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResultV2> => {
-  const result = queryParamSchema.safeParse(event.queryStringParameters);
-  const key = event.pathParameters!.id!;
-
-  if (!result.success && !event.body) {
-    return { statusCode: StatusCodes.BAD_REQUEST };
-  }
-
+  const imageId = uuid.v4().toString();
   const attachment = await lambdaFileParser.parse(event);
   const file = attachment.files.at(0);
 
@@ -23,15 +17,14 @@ export const main = async (
   }
 
   await Image.Mutations.write({
-    key,
+    key: imageId,
     buf: file.content,
     location: Image.Shared.Variant.Original,
     contentType: file.contentType,
   });
 
-  return { statusCode: StatusCodes.OK };
+  return {
+    statusCode: StatusCodes.OK,
+    body: JSON.stringify({ image: imageId }),
+  };
 };
-
-const queryParamSchema = z.object({
-  key: z.string(),
-});

@@ -10,8 +10,9 @@ export async function main(event: SQSEvent): Promise<void> {
       return;
     }
 
-    // TODO: find image keys
-    return Image.Mutations.remove('todo', Image.Shared.Variant.Original);
+    // since this removal is triggered by the original image
+    // we need to remove all transformations for that image
+    return Image.Mutations.remove('todo', Image.Shared.Variant.Transform);
   });
 
   await Promise.allSettled(tasks);
