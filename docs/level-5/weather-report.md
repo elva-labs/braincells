@@ -3,7 +3,7 @@
 > Task Description: Create a service that collect weather readings from muliple sources and then outputs the mean value(s) to a slack channel
 
 :::tip
-Use this (project)[https://github.com/elva-labs/serverless-onboarding/tree/main/exercises/weather-report] as a starting point.
+Use this [project](https://github.com/elva-labs/serverless-onboarding/tree/main/exercises/weather-report) as a starting point.
 :::
 
 ### Overview
