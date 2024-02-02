@@ -35,7 +35,7 @@ export default defineConfig({
         text: '2. Serverless Computing Concepts',
         items: [
           {
-            text: 'Your First lambda',
+            text: 'Your First Lambda',
             link: '/level-2/hello-world-lambda',
           },
           {
@@ -48,7 +48,7 @@ export default defineConfig({
         text: '3. Serverless Development and Deployment',
         items: [
           {
-            text: 'Framewors',
+            text: 'Frameworks',
             link: '/level-3/frameworks',
           },
           {
