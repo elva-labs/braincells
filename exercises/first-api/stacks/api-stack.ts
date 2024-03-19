@@ -7,7 +7,9 @@ export function API({ stack }: StackContext) {
   const api = new Api(stack, 'restApi', {
     routes: {
       'GET /notes': 'src/functions/notes.getAll',
-      // TODO: add your endpoints here
+      'GET /notes/{id}': 'src/functions/notes.getSingle',
+      'POST /notes': 'src/functions/notes.addNote',
+      'DELETE /notes/{id}': 'src/functions/notes.removeNote'
     },
     defaults: {
       function: {

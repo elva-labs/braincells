@@ -28,7 +28,7 @@ describe('first-api', () => {
     expect(payload).toEqual([]);
   });
 
-  test.skip('should create some notes', async () => {
+  test('should create some notes', async () => {
     const note: Partial<Note> = {
       text: 'lorem impsum...',
     };
@@ -78,7 +78,7 @@ describe('first-api', () => {
     );
   });
 
-  test.skip('should create a note, then remove it', async () => {
+  test('should create a note, then remove it', async () => {
     const noteReq = await fetch(apiUrl, {
       method: 'POST',
       headers: {

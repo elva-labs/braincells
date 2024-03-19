@@ -52,7 +52,7 @@ Add endpoints for each (CRUD) action we want to perform on the `Note` data struc
 |GET     | 200\|404   | Note          |
 |GET     | 200        | Note[]        |
 |POST    | 201        | Note          |
-|DELTE   | 204        |               |
+|DELETE  | 204        |               |
 
 ### Validation
 `pnpm run test`

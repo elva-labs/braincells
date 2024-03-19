@@ -1,0 +1,22 @@
+{
+    "name": "end-to-end",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test:e2e": "playwright test",
+      "test:ui": "playwright test --ui",
+      "codegen": "playwright codegen https://p34fjr6b6k.execute-api.eu-west-1.amazonaws.com/roxell/reports"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "@playwright/test": "^1.40.1",
+      "@types/node": "^20.10.4"
+    },
+    "dependencies": {
+      "envalid": "^8.0.0",
+      "http-status-codes": "^2.3.0"
+    }
+  }

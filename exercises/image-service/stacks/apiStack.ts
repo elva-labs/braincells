@@ -7,7 +7,11 @@ export function API({ stack }: StackContext) {
   );
 
   const api = new Api(stack, 'transformationAPI', {
-    routes: {},
+    routes: {
+      "PUT /images": "src/functions/image.uploadImage",
+      "GET /images/{id}": "src/functions/image.getImage",
+      "DELETE /images/{id}": "src/functions/image.removeImage"
+    },
 
     defaults: {
       function: {},

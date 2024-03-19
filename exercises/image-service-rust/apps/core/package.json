@@ -1,0 +1,24 @@
+{
+    "name": "core",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+      "dev": "sst dev",
+      "build": "sst build",
+      "deploy": "sst deploy",
+      "remove": "sst remove",
+      "console": "sst console",
+      "check": "cargo clippy -- -D warnings",
+      "test": "cargo test --package internal",
+      "test:ts": "vitest"
+    },
+    "dependencies": {
+      "envalid": "^8.0.0",
+      "jsonata": "^2.0.3",
+      "vitest": "^1.1.1"
+    },
+    "devDependencies": {
+      "@types/node": "^20.10.4"
+    }
+  }

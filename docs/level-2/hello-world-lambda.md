@@ -3,21 +3,21 @@
 ::: info
 In this exercise you will learn:
 
-1. What Lamba is
-2. What a cloudfromation & CDK / SST is
+1. What Lambda is
+2. What a cloud formation & CDK / SST is
 3. How to deploy & remove assets from AWS
    :::
 
 ## Lambda
 
-AWS Lambda is a serverless compute service provided by Amazon Web Services (AWS) that allows you to run code in response to events and triggers. It eliminates the need to manage servers, automatically scales with the workload, supports various programming languages, and charges you only for the compute resources used during code execution. AWS Lambda is ideal for building cost-effective, scalable, and event-driven applications across a wide range of use cases, from web APIs to real-time data processing and automation.
+AWS Lambda is a serverless compute service provided by Amazon Web Services (AWS) that allows you to run code in response to events and triggers. It eliminates the need to manage servers, automatically scales with the workload, supports various programming languages, and only charge you for the compute resources used during code execution. AWS Lambda is ideal for building cost-effective, scalable, and event-driven applications across a wide range of use cases, from web APIs to real-time data processing and automation.
 
 In short, we can define code handlers (just normal functions). These handlers inform the AWS runtime of which functions to execute based on internal events originating from other AWS services.
 
 ```ts
 // This handler is invoked base on some internal event that occur in AWS
 // that we define for the given lambda configuration.
-// Events can be anything from a HTTP request to a mroe custom async trigger.
+// Events can be anything from a HTTP request to a more custom async trigger.
 export const handler = (event) => {
   // Do something with the event or just react on the event itself
 };
@@ -39,7 +39,7 @@ CDK simplifies the process of defining and managing cloud infrastructure, making
 
 ## Exercise
 
-We'll do most things manually in the start. However, there are a broad rage of project-generators one could use down the line to make things faster (and maybe more reliable).
+We'll do most things manually in the start. However, there's a broad range of project-generators one could use down the line to make things faster (and maybe more reliable).
 
 1. Create a new project
 2. Write a lambda
@@ -109,7 +109,7 @@ export default {
 ```
 
 ```json
-// tsconfig.ts
+// tsconfig.json
 
 {
   "extends": "@tsconfig/node18/tsconfig.json",
@@ -145,7 +145,7 @@ export const handler = async () => {
 
 ### 5. Adding our Infrastructure
 
-1. `touch stack/first-stack.ts`
+1. `touch stacks/first-stack.ts`
 
 ```ts
 // stacks/first-stack.ts
@@ -193,10 +193,10 @@ export default {
 
 ### 6. Scripts
 
-We often add usefull scripts to the package.json file to simply project
+We often add useful scripts to the package.json file to simply project
 management when it comes to things like: deployment, test, and other checks.
 
-In our case, we want to add two, one for typechecking, project deployment, and finally teardown (delete).
+In our case, we want to add three, one for typechecking, project deployment, and finally teardown (delete).
 
 ```json
 // package.json
@@ -233,11 +233,11 @@ curl https://ksei4ctj3fqms4o3n4t2wnrdem0okgrp.lambda-url.eu-north-1.on.aws/
 
 You'll be able to see the execution logs in the terminal.
 
-> Note: during dev-move, requests are proxied to your local system, if you instead use the deploy cmd, the code will be packged and published to AWS, and then the "actual" lambda srouce in the cloud will produce the response.
+> Note: during dev-move, requests are proxied to your local system, if you instead use the deploy cmd, the code will be packaged and published to AWS, and then the "actual" lambda srouce in the cloud will produce the response.
 
 ### 8. Remove
 
-To remove all assets taht were deployed, run the following.
+To remove all assets that were deployed, run the following.
 
 ```bash
 pnpm run remove

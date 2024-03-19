@@ -5,12 +5,13 @@ To create and run a TypeScript project using the Serverless Stack (SST) framewor
 
 Install SST CLI: First, install the SST CLI globally using npm:
 ```bash
-npm install -g serverless-stack-cli
-sst init my-sst-project --language typescript
+npm install -g serverless-stack-cli #not working, needed to do: npm i -g @serverless-stack/cli
+sst init my-sst-project --language typescript #not working: needed to do: npx create-sst@latest my-sst-project
 cd my-sst-project
 ```
 
-The project will have a default setup with a few directories and files, including:
+The project will have a default setup with a few directories and files, including: 
+#COMMENT: All wrong, no longer the default setup of sst-project
 
 * `lib/`: Where your stack is defined.
 * `test/`: Contains test files.
@@ -33,18 +34,18 @@ pnpm i
 Start the Live Lambda Development Environment:
 
 ```bash
-pnpm start
+pnpm start # no start in package.json, -> pnpm run dev
 ```
 
 ### Deploy
 
 ```bash
-pnpm run deploy --stage prod
+pnpm run deploy --stage prod # works
 ```
 
 ### Remove all assets for a given project
 
 ```bash
-pnpm run destroy
+pnpm run destroy # pnpm run remove
 ```
 

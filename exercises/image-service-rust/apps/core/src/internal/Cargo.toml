@@ -1,0 +1,32 @@
+[package]
+name = "internal"
+version = "0.1.0"
+edition = "2021"
+
+# Starting in Rust 1.62 you can use `cargo add` to add dependencies 
+# to your project.
+#
+# If you're using an older Rust version,
+# download cargo-edit(https://github.com/killercup/cargo-edit#installation) 
+# to install the `add` subcommand.
+#
+# Running `cargo add DEPENDENCY_NAME` will
+# add the latest version of a dependency to the list,
+# and it will keep the alphabetic ordering for you.
+
+[dependencies]
+aws-config.workspace = true
+aws-sdk-s3.workspace = true
+aws-sdk-dynamodb.workspace = true
+serde_dynamo.workspace = true
+dotenv.workspace = true 
+envy.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+tokio.workspace = true
+tokio-stream.workspace = true
+uuid.workspace = true
+jaq-core = { version = "0.10.0", features = ["std"] }
+jaq-std = "0.10.0"
+quickxml_to_serde = "0.5.0"
