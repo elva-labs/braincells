@@ -7,10 +7,10 @@ export default defineConfig({
   description:
     'Training Center for Elva. Topics like Serverless, AWS, and more.',
 
-  head: [['link', { rel: 'stylesheet', href: '../custom.css' }]],
+  head: [['link', { rel: 'stylesheet', href: './custom.css' }]],
 
   themeConfig: {
-    logo: '../assets/elva-log-transparent.png',
+    logo: './assets/elva-log-transparent.png',
 
     nav: [
       {
