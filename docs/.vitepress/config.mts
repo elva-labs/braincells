@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Hjärnceller',
-  base: '/training/',
+  base: '/serverless-onboarding/',
   description:
     'Training Center for Elva. Topics like Serverless, AWS, and more.',
 
