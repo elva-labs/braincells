@@ -1,10 +1,4 @@
-<script setup>
-import QuizComponent from "../../components/Quiz.vue"
-</script>
-
 # Introduction to AWS
-
-<QuizComponent />
 
 ## Overview
 In Module 1, we will start on our journey into the world of serverless computing by first gaining a solid understanding of Amazon Web Services (AWS). AWS is the leading cloud service provider that offers a vast array of services, including those essential for serverless application development. This module serves as a foundational introduction to AWS, setting the stage for our subsequent exploration of serverless technologies.

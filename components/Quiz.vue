@@ -9,7 +9,7 @@
             correct: result !== null && index === correctAnswer,
             wrong: result !== null && index !== correctAnswer && index === selectedAnswer
           }"
-          :disabled="result !== null"
+          :disabled="result !== null && index !== correctAnswer"
         >
           {{ answer }}
         </button>
@@ -59,15 +59,19 @@ export default {
   margin-bottom: 10px;
 }
 .quiz button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
+  border-color: var(--vp-button-brand-border);
+  color: var(--vp-button-brand-text);
+  background-color: var(--vp-button-brand-bg);
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 38px;
+  font-size: 14px;
   transition: background-color 0.3s, border-color 0.3s;
 }
 .quiz button:hover {
-  background-color: #f0f0f0;
+  border-color: var(--vp-button-brand-hover-border);
+  color: var(--vp-button-brand-hover-text);
+  background-color: var(--vp-button-brand-hover-bg);
 }
 .quiz button.correct {
   background-color: green;

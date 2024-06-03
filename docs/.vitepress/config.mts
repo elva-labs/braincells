@@ -2,130 +2,149 @@ import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Elva Onboarding',
-  base: '/serverless-onboarding/',
-  description: 'elva-onboarding-wip',
-  themeConfig: {
-    nav: [{ text: 'Home', link: '/' }],
+  title: 'Hjärnceller',
+  base: '/training/',
+  description:
+    'Training Center for Elva. Topics like Serverless, AWS, and more.',
 
-    sidebar: [
-      { text: 'Outline', link: '/outline' },
+  head: [['link', { rel: 'stylesheet', href: '../custom.css' }]],
+
+  themeConfig: {
+    logo: '../assets/elva-log-transparent.png',
+
+    nav: [
       {
-        text: '1. Introduction to AWS',
-        items: [
-          {
-            text: 'Cloud Computing',
-            link: '/level-1/cloud-computing',
-          },
-          {
-            text: 'Use Case',
-            link: '/level-1/use-case',
-          },
-          {
-            text: 'Prerequisites',
-            link: '/level-1/prerequisites',
-          },
-          {
-            text: 'Your account',
-            link: '/level-1/account',
-          },
-        ],
+        text: 'Onboarding',
+        link: '/onboarding/outline',
       },
       {
-        text: '2. Serverless Computing Concepts',
-        items: [
-          {
-            text: 'Your First Lambda',
-            link: '/level-2/hello-world-lambda',
-          },
-          {
-            text: 'Your First API',
-            link: '/level-2/your-first-api',
-          },
-        ],
-      },
-      {
-        text: '3. Serverless Development and Deployment',
-        items: [
-          {
-            text: 'Frameworks',
-            link: '/level-3/frameworks',
-          },
-          {
-            text: 'SST',
-            link: '/level-3/sst',
-          },
-          {
-            text: 'Creating & Running a Project',
-            link: '/level-3/project',
-          },
-        ],
-      },
-      {
-        text: '4. Serverless Data Storage and Databases',
-        items: [
-          {
-            text: 'S3',
-            link: '/level-4/s3',
-          },
-          {
-            text: 'DynamoDB',
-            link: '/level-4/dynamo',
-          },
-          {
-            text: 'Building an Image Service',
-            link: '/level-4/image-service',
-          },
-        ],
-      },
-      {
-        text: '5. Advanced Serverless Topics',
-        items: [
-          {
-            text: 'Event-Driven Architectures',
-            link: '/level-5/eda-serverless',
-          },
-          {
-            text: 'State Machines',
-            link: '/level-5/statemachines',
-          },
-          {
-            text: 'Building a Weather Report Service',
-            link: '/level-5/weather-report',
-          },
-          {
-            text: 'Authentication and Authorization (TODO)',
-            link: '',
-          },
-          {
-            text: 'Secure you APIs (TODO)',
-            link: '/level-5/image-service',
-          },
-          {
-            text: 'Monitoring & Debugging (TODO)',
-            link: '',
-          },
-        ],
-      },
-      {
-        text: '8. Serverless Optimization and Best Practices (TODO)',
-        link: '',
-        items: [
-          {
-            text: 'CI/CD',
-            link: '',
-          },
-          {
-            text: 'Cost Optimization',
-            link: '',
-          },
-          {
-            text: 'Serverless Security',
-            link: '',
-          },
-        ],
+        text: 'Courses',
+        items: [{ text: 'Containerization', link: '/containers/outline' }],
       },
     ],
+
+    sidebar: {
+      '/onboarding/': [
+        { text: 'Outline', link: '/onboarding/outline' },
+        {
+          text: '1. Introduction to AWS',
+          items: [
+            {
+              text: 'Cloud Computing',
+              link: '/onboarding/level-1/cloud-computing',
+            },
+            {
+              text: 'Use Case',
+              link: '/onboarding/level-1/use-case',
+            },
+            {
+              text: 'Prerequisites',
+              link: '/onboarding/level-1/prerequisites',
+            },
+            {
+              text: 'Your account',
+              link: '/onboarding/level-1/account',
+            },
+          ],
+        },
+        {
+          text: '2. Serverless Computing Concepts',
+          items: [
+            {
+              text: 'Your First Lambda',
+              link: '/onboarding/level-2/hello-world-lambda',
+            },
+            {
+              text: 'Your First API',
+              link: '/onboarding/level-2/your-first-api',
+            },
+          ],
+        },
+        {
+          text: '3. Serverless Development and Deployment',
+          items: [
+            {
+              text: 'Frameworks',
+              link: '/onboarding/level-3/frameworks',
+            },
+            {
+              text: 'SST',
+              link: '/onboarding/level-3/sst',
+            },
+            {
+              text: 'Creating & Running a Project',
+              link: '/onboarding/level-3/project',
+            },
+          ],
+        },
+        {
+          text: '4. Serverless Data Storage and Databases',
+          items: [
+            {
+              text: 'S3',
+              link: '/onboarding/level-4/s3',
+            },
+            {
+              text: 'DynamoDB',
+              link: '/onboarding/level-4/dynamo',
+            },
+            {
+              text: 'Building an Image Service',
+              link: '/onboarding/level-4/image-service',
+            },
+          ],
+        },
+        {
+          text: '5. Advanced Serverless Topics',
+          items: [
+            {
+              text: 'Event-Driven Architectures',
+              link: '/onboarding/level-5/eda-serverless',
+            },
+            {
+              text: 'State Machines',
+              link: '/onboarding/level-5/statemachines',
+            },
+            {
+              text: 'Building a Weather Report Service',
+              link: '/onboarding/level-5/weather-report',
+            },
+            {
+              text: 'Authentication and Authorization (TODO)',
+              link: '',
+            },
+            {
+              text: 'Secure you APIs (TODO)',
+              link: '/onboarding/level-5/image-service',
+            },
+            {
+              text: 'Monitoring & Debugging (TODO)',
+              link: '',
+            },
+          ],
+        },
+        {
+          text: '8. Serverless Optimization and Best Practices (TODO)',
+          link: '',
+          items: [
+            {
+              text: 'CI/CD',
+              link: '',
+            },
+            {
+              text: 'Cost Optimization',
+              link: '',
+            },
+            {
+              text: 'Serverless Security',
+              link: '',
+            },
+          ],
+        },
+      ],
+
+      '/containers/': [{ text: 'Outline', link: '/containers/outline' }],
+    },
 
     socialLinks: [
       {
