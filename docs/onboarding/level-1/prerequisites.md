@@ -2,7 +2,7 @@
 
 ## Install
 
-Your now need to install a few critical cli tools to continue.
+You now need to install a few critical CLI tools to continue.
 
 :::tip
 Use the package manager for your specific OS, if not, download and install the binaries.
