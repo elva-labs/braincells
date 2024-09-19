@@ -71,7 +71,7 @@ We have examples for all the solutions, this one is over at `/examples/serverles
 />
 
 <Quiz 
-  question="Which service would you use to store metadata about the uploaded files?"
+  question="Which service would you use to store queryable metadata about the uploaded files?"
   :answers="['Amazon S3', 'Amazon RDS', 'Amazon DynamoDB', 'AWS Glue Data Catalog']"
   :correctAnswer="2"
   :answerInfo="[
