@@ -3,7 +3,7 @@
 > Task Description: Image Upload and Transformation Service using SST and TypeScript
 
 :::tip
-Use this [project](https://github.com/elva-labs/serverless-onboarding/tree/main/exercises/image-service) as a starting point.
+Use this [project](https://github.com/elva-labs/braincells/tree/main/exercises/image-service) as a starting point.
 :::
 
 ### Overview

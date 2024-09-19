@@ -1,6 +1,6 @@
 # WORK IN PROGRESS 
 
-> https://elva-labs.github.io/serverless-onboarding/
+> https://elva-labs.github.io/braincells/
 
 ## Project Structure
 
@@ -13,20 +13,20 @@
 │   ├── containers
 │   │   ├── sub-folders with course material
 │   │   └── outline.md
-│   ├── onboarding
+│   ├── serverless-aws
 │   │   ├── sub-folders with course material
 │   │   └── outline.md
-│   ├── serverless-solutions
+│   ├── serverless-challenges
 │   │   └── sub-folders with course material
-│   │       └── frontend
+│   │   └── outline.md
 │   └── public
 │       └── assets
 ├── examples
 │   ├── containers
 │   │   └── sub-folders with examples
-│   ├── onboarding
+│   ├── serverless-aws
 │   │   └── sub-folders with examples
-│   └── serverless-solutions
+│   └── serverless-challenges
 │       └── sub-folders with examples
 └── exercises
     ├── first-api

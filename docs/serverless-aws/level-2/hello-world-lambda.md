@@ -48,7 +48,7 @@ We'll do most things manually in the start. However, there are a broad rage of p
 5. Remove the project / resources
 
 :::tip
-When in doubt look at the examples [here](https://github.com/elva-labs/serverless-onboarding/tree/main/examples/onboarding).
+When in doubt look at the examples [here](https://github.com/elva-labs/braincells/tree/main/examples/serverless-aws).
 :::
 
 ### 1. Creating a Project

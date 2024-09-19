@@ -1,7 +1,7 @@
 # SST
 
 :::tip
-We'll use some of these constructs later on in this onboarding
+We'll use some of these constructs later on in this course.
 :::
 
 ## What's Happening Here? 
