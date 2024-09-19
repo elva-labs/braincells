@@ -89,7 +89,9 @@ Here are examples of how the entities might look (without specifying the partiti
 
 ## Architecture
 
+<!---
 ![Architecture Diagram](./data-persistance-patterns-with-dynamodb.png)
+-->
 
 ## Hints
 
