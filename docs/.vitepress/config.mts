@@ -5,7 +5,10 @@ export default defineConfig({
   title: "Elva Braincells",
   base: "/braincells/",
   description: "Learn AWS Serverless with resources by the experts at Elva.",
-  head: [["link", { rel: "stylesheet", href: "./custom.css" }]],
+  head: [
+    ["link", { rel: "stylesheet", href: "./custom.css" }],
+    ["link", { rel: "icon", href: "./favicon.ico" }],
+  ],
   themeConfig: {
     logo: "./assets/elva-logo-transparent.png",
     nav: [
