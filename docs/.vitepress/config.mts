@@ -6,12 +6,9 @@ export default defineConfig({
   base: '/serverless-onboarding/',
   description:
     'Training Center for Elva. Topics like Serverless, AWS, and more.',
-
   head: [['link', { rel: 'stylesheet', href: './custom.css' }]],
-
   themeConfig: {
-    logo: './assets/elva-log-transparent.png',
-
+    logo: './assets/elva-logo-transparent.png',
     nav: [
       {
         text: 'Onboarding',
@@ -19,10 +16,12 @@ export default defineConfig({
       },
       {
         text: 'Courses',
-        items: [{ text: 'Containerization', link: '/containers/outline' }],
+        items: [
+          { text: 'Containerization', link: '/containers/outline' },
+          { text: 'Serverless Solutions', link: '/serverless-solutions/outline' }
+        ],
       },
     ],
-
     sidebar: {
       '/onboarding/': [
         { text: 'Outline', link: '/onboarding/outline' },
@@ -143,7 +142,23 @@ export default defineConfig({
         },
       ],
 
-      '/containers/': [{ text: 'Outline', link: '/containers/outline' }],
+      '/containers/': [
+        { text: 'Outline', link: '/containers/outline' }
+      ],
+
+      '/serverless-solutions/': [
+        { text: 'Outline', link: '/serverless-solutions/outline' },
+        {
+          text: 'Data Persistance and Storage',
+          link: '/serverless-solutions/data-persistance-and-storage',
+          items: [
+            {
+              text: 'Use S3 to store and serve large media files uploaded by users',
+              link: '/serverless-solutions/data-persistance-and-storage/store-and-serve-large-media-files',
+            },
+          ],
+        },
+      ],
     },
 
     socialLinks: [

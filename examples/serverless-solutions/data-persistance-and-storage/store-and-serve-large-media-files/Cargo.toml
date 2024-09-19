@@ -1,0 +1,31 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aws-config = { version = "1.5.6", features = ["behavior-version-latest"] }
+aws-sdk-dynamodb = "1.45.0"
+aws-sdk-s3 = "1.49.0"
+aws_lambda_events = "0.15.1"
+lambda_http = "0.13.0"
+lambda_runtime = "0.13.0"
+serde_json = "1.0.128"
+
+tokio = { version = "1", features = ["macros"] }
+
+[[bin]]
+name = "download_file"
+path = "src/download_file.rs"
+
+[[bin]]
+name = "get_presigned_url"
+path = "src/get_presigned_url.rs"
+
+[[bin]]
+name = "get_uploaded_files"
+path = "src/get_uploaded_files.rs"
+
+[[bin]]
+name = "process_s3_upload"
+path = "src/process_s3_upload.rs"

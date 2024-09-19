@@ -25,7 +25,7 @@ REST APIs are widely used for building web services, and they provide a scalable
 
 ## Exercise
 
-This time you'll have to do some more work. I want you to create a CRUD api for todo-notes. Move into the project folder `cd exercises/first-api` and get to work.
+This time you'll have to do some more work. I want you to create a CRUD api for todo-notes. Move into the project folder `cd exercises/onboarding/first-api` and get to work.
 
 > You're done once you can run the all the test found in the boilerplate project.
 

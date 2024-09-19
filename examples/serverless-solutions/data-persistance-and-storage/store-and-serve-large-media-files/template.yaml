@@ -1,0 +1,154 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  backend
+  Sample SAM Template for backend
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  MyDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: data-persistance-ddb-table
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-s3-bucket"
+
+  DownloadFile:
+    Type: AWS::Serverless::Function 
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: download_file
+    Properties:
+      CodeUri: ./
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
+      Events:
+        ApiEvent:
+          Type: Api 
+          Properties:
+            Path: /download
+            Method: get
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Sub "${AWS::StackName}-s3-bucket"
+
+  GetPresignedUrl:
+    Type: AWS::Serverless::Function 
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: get_presigned_url
+    Properties:
+      CodeUri: ./
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref MyDynamoDBTable
+          BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
+      Events:
+        ApiEvent:
+          Type: Api 
+          Properties:
+            Path: /url
+            Method: get
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Sub "${AWS::StackName}-s3-bucket"
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyDynamoDBTable
+
+  GetUploadedFiles:
+    Type: AWS::Serverless::Function 
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: get_uploaded_files
+    Properties:
+      CodeUri: ./
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref MyDynamoDBTable
+      Events:
+        ApiEvent:
+          Type: Api 
+          Properties:
+            Path: /files
+            Method: get
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref MyDynamoDBTable
+
+  ProcessS3UploadFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: process_s3_upload
+    Properties:
+      CodeUri: ./
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref MyDynamoDBTable
+          BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
+      Events:
+        S3ObjectCreated:
+          Type: S3
+          Properties:
+            Bucket: !Ref MyS3Bucket
+            Events: s3:ObjectCreated:*
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Sub "${AWS::StackName}-s3-bucket"
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MyDynamoDBTable
+
+Outputs:
+  DynamoDBTableName:
+    Description: DynamoDB Table Name
+    Value: !Ref MyDynamoDBTable
+  S3BucketName:
+    Description: S3 Bucket Name
+    Value: !Ref MyS3Bucket
+  PresignedApiUrl:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/url"
+  FilesApiUrl:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/files"

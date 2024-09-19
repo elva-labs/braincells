@@ -1,5 +1,5 @@
 <script setup>
-import QuizComponent from "../../components/Quiz.vue"
+import Quiz from "../../components/Quiz.vue"
 </script>
 
 # Containerization Outline
@@ -11,7 +11,11 @@ Description
 Description
 
 
-<QuizComponent />
+<Quiz 
+  question="What type of AWS Lambda trigger can be used to customize the sign-up process in Cognito?"
+  :answers="['Pre Sign-up', 'Post Authentication', 'Pre Token Generation', 'Define Auth Challenge']"
+  :correctAnswer="0"
+/>
 
 ---
 

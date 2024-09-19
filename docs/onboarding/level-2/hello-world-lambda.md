@@ -3,10 +3,10 @@
 ::: info
 In this exercise you will learn:
 
-1. What Lamba is
-2. What a cloudfromation & CDK / SST is
+1. What Lambda is
+2. What CloudFormation & CDK / SST is
 3. How to deploy & remove assets from AWS
-   :::
+:::
 
 ## Lambda
 
@@ -17,7 +17,7 @@ In short, we can define code handlers (just normal functions). These handlers in
 ```ts
 // This handler is invoked base on some internal event that occur in AWS
 // that we define for the given lambda configuration.
-// Events can be anything from a HTTP request to a mroe custom async trigger.
+// Events can be anything from a HTTP request to a more custom async trigger.
 export const handler = (event) => {
   // Do something with the event or just react on the event itself
 };
@@ -35,7 +35,7 @@ CDK simplifies the process of defining and managing cloud infrastructure, making
 
 ### Serverless Stack (SST)
 
-[Serverless Stack](https://sst.dev/) is an open-source framework for building serverless applications on AWS (Amazon Web Services). It simplifies the process of developing, deploying, and managing serverless applications by providing a set of abstractions and tools. Serverless Stack typically leverages AWS services like AWS Lambda, API Gateway, DynamoDB, and others to create scalable and cost-effective serverless applications.
+[Serverless Stack v2](https://sst.dev/) is an open-source framework for building serverless applications on AWS (Amazon Web Services). It simplifies the process of developing, deploying, and managing serverless applications by providing a set of abstractions and tools. Serverless Stack typically leverages AWS services like AWS Lambda, API Gateway, DynamoDB, and others to create scalable and cost-effective serverless applications.
 
 ## Exercise
 
@@ -48,7 +48,7 @@ We'll do most things manually in the start. However, there are a broad rage of p
 5. Remove the project / resources
 
 :::tip
-When in doubt look at the examples [here](https://github.com/elva-labs/serverless-onboarding/tree/main/examples).
+When in doubt look at the examples [here](https://github.com/elva-labs/serverless-onboarding/tree/main/examples/onboarding).
 :::
 
 ### 1. Creating a Project
@@ -193,7 +193,7 @@ export default {
 
 ### 6. Scripts
 
-We often add usefull scripts to the package.json file to simply project
+We often add useful scripts to the package.json file to simply project
 management when it comes to things like: deployment, test, and other checks.
 
 In our case, we want to add two, one for typechecking, project deployment, and finally teardown (delete).
@@ -222,7 +222,7 @@ run sst and deploy our infrastructure. Take a COB (HALT/COFFEE BREAK) while ever
 
 ### 7. Test
 
-The terminal will eventually output the link to your lambda. Once you use that link in a broswer or `curl` a request / event will be triggered to AWS that will invoke the deployed lambda and produce a response.
+The terminal will eventually output the link to your lambda. Once you use that link in a browser or `curl` a request / event will be triggered to AWS that will invoke the deployed lambda and produce a response.
 
 ```bash
 curl https://ksei4ctj3fqms4o3n4t2wnrdem0okgrp.lambda-url.eu-north-1.on.aws/
@@ -233,11 +233,11 @@ curl https://ksei4ctj3fqms4o3n4t2wnrdem0okgrp.lambda-url.eu-north-1.on.aws/
 
 You'll be able to see the execution logs in the terminal.
 
-> Note: during dev-move, requests are proxied to your local system, if you instead use the deploy cmd, the code will be packged and published to AWS, and then the "actual" lambda srouce in the cloud will produce the response.
+> Note: during dev-move, requests are proxied to your local system, if you instead use the deploy cmd, the code will be packaged and published to AWS, and then the "actual" lambda source in the cloud will produce the response.
 
 ### 8. Remove
 
-To remove all assets taht were deployed, run the following.
+To remove all assets that were deployed, run the following.
 
 ```bash
 pnpm run remove

@@ -6,3 +6,6 @@ tmp
 cache
 dist
 .sst
+target
+.aws-sam
+.DS_Store
