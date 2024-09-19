@@ -33,7 +33,7 @@ Consider using S3 Bucket notifications with Lambda to automatically update metad
 :::
 
 ::: details Hint 3: Look at an example if stuck
-We have examples for all the solutions, this one is over [here](../../../examples/serverless-solutions/data-persistance-and-storage/store-and-serve-large-media-files/README.md).
+We have examples for all the solutions, this one is over at `/examples/serverless-solutions/data-persistance-and-storage/store-and-serve-large-media-files.`
 :::
 
 ## Resources
