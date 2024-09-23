@@ -2,11 +2,13 @@
 import Quiz from "../../../components/Quiz.vue"
 </script>
 
-# Use S3 to store and serve large media files uploaded by users
+# Store and serve large media files
+
+In this challenge, you'll implement a serverless solution to handle large media files. This pattern is often used when dealing with sizeable files such as images or videos that need to be stored securely and served efficiently. It's a common requirement in modern web and mobile applications.
 
 ## Challenge Description
 
-In this challenge, you'll build a serverless solution to allow upload large media files (such as images or videos) to Amazon S3 and then serve these files to others. You'll need to implement secure upload mechanisms, manage file metadata, and create a way to retrieve and display the uploaded files.
+Your task is to design a serverless solution that allows users to upload large media files (such as images or videos) to Amazon S3 and then serve these files to others. You'll need to implement secure upload mechanisms, manage file metadata, and create a way to retrieve and display the uploaded files. This approach uses Pre-signed S3 urls for both up- and download as well as manages metadata with DynamoDB.
 
 ## Technical Requirements
 
@@ -33,7 +35,7 @@ Consider using S3 Bucket notifications with Lambda to automatically update metad
 :::
 
 ::: details Hint 3: Look at an example if stuck
-We have examples for all the challenges, this one is over [here](https://github.com/elva-labs/braincells/tree/main/examples/serverless-challenges/data-persistance-and-storage/store-and-serve-large-media-files).
+We have an example for this challenge over [here](https://github.com/elva-labs/braincells/tree/main/examples/serverless-challenges/data-persistance-and-storage/store-and-serve-large-media-files).
 :::
 
 ## Resources

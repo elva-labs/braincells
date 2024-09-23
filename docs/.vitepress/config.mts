@@ -149,12 +149,33 @@ export default defineConfig({
 
       "/serverless-challenges/": [
         { text: "Outline", link: "/serverless-challenges/outline" },
+
+        {
+          text: "Event Driven Architectures",
+          link: "/serverless-challenges/event-driven",
+          items: [
+            {
+              text: "Storage First",
+              link: "/serverless-challenges/event-driven/storage-first"
+            },
+            {
+              text: "Claim Check Pattern",
+              link: "/serverless-challenges/event-driven/claim-check-pattern"
+            },
+            {
+              text: "Cross Account Events",
+              link: "/serverless-challenges/event-driven/cross-account-events"
+            }
+          ]
+        },
+
+        // Harder, should probably be renamed
         {
           text: "Data Persistance and Storage",
           link: "/serverless-challenges/data-persistance-and-storage",
           items: [
             {
-              text: "Use S3 to store and serve large media files uploaded by users",
+              text: "Store and serve large media files",
               link: "/serverless-challenges/data-persistance-and-storage/store-and-serve-large-media-files",
             },
             {

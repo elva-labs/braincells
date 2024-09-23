@@ -11,7 +11,9 @@
         </button>
       </li>
     </ul>
-    <p v-if="result !== null">{{ result }}</p>
+    <p v-if="result !== null" class="hint">
+      {{ result }}
+    </p>
   </div>
 </template>
 
@@ -57,8 +59,8 @@ export default {
 
 <style scoped>
 .quiz {
+  font-family: var(--vp-font-family-base);
   margin: 20px 0;
-  font-family: Arial, sans-serif;
 }
 
 .quiz h3 {
@@ -106,5 +108,17 @@ export default {
 .quiz button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.hint {
+  border-color: var(--vp-custom-block-details-border);
+  color: var(--vp-custom-block-details-text);
+  background-color: var(--vp-custom-block-details-bg);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  line-height: 24px;
+  font-size: var(--vp-custom-block-font-size);
+  overflow-wrap: break-word;
 }
 </style>

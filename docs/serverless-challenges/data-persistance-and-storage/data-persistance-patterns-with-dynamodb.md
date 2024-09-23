@@ -2,28 +2,29 @@
 import Quiz from "../../../components/Quiz.vue"
 </script>
 
-# Data Persistence Patterns with DynamoDB
+# Data Patterns with DynamoDB
+
+In this challenge, you'll implement advanced data patterns using Amazon DynamoDB. These patterns are for handling the complex data requirements of high-traffic, large-scale applications such as e-commerce platforms. DynamoDB's unique features and capabilities make it an ideal choice for ensuring efficient data storage, retrieval, and management in scenarios where performance and scalability are important.
 
 ## Challenge Description
 
-In this challenge, you'll design and implement a sophisticated data persistence solution using Amazon DynamoDB for a high-traffic e-commerce platform. You'll focus on optimizing data storage and access patterns, ensuring efficient data persistence and retrieval while implementing advanced DynamoDB features.
+Your task is to design and implement a solution using Amazon DynamoDB for a high-traffic e-commerce platform. You'll need to focus on optimizing data storage and access patterns, ensuring efficient retrieval while implementing advanced DynamoDB features. This challenge will teach you to leverage DynamoDB's capabilities like managing diverse entity types, implementing complex query patterns, and ensuring data consistency and durability.
 
 ## Technical Requirements
 
 1. Design a single-table DynamoDB schema to store multiple entity types:
-   - Products (with categories, attributes, and pricing history)
-   - Customer Orders (with line items, status, and payment info)
-   - Customer Reviews
-   - Inventory Levels
+    - Products (with categories, attributes, and pricing history)
+    - Customer Orders (with line items, status, and payment info)
+    - Customer Reviews
+    - Inventory Levels
 2. Implement efficient access patterns for the following queries:
-   - Retrieve all orders for a customer in the last 30 days
-   - Find all reviews for a specific product
-   - Get the current inventory level for a product
-   - Fetch the price history of a product over the last year
-3. Utilize DynamoDB's Time to Live (TTL) feature to automatically expire and delete old pricing data after 2 years.
+    - Retrieve all orders for a customer in the last 30 days
+    - Find all reviews for a specific product
+    - Get the current inventory level for a product
+    - Fetch the price history of a product over the last year
+3. Utilize DynamoDB's Time to Live (TTL) feature to automatically expire and delete old pricing data after one hour (or another appropriate length for your testing).
 4. Implement a data archiving solution:
-   - Move completed orders older than 1 year to S3 using DynamoDB's point-in-time recovery feature
-   - Create a process to query this archived data when necessary
+    - TODO: FIGURE THIS OUT
 5. Use DynamoDB's transactional APIs to ensure data consistency when updating related items (e.g., decrementing inventory when placing an order).
 
 ## Entity Examples
@@ -31,61 +32,61 @@ In this challenge, you'll design and implement a sophisticated data persistence 
 Here are examples of how the entities might look (without specifying the partition and sort keys):
 
 1. Product:
-   ```json
-   {
-     "productId": "P12345",
-     "name": "Wireless Earbuds",
-     "category": "Electronics",
-     "price": 79.99,
-     "attributes": {
-       "color": "white",
-       "batteryLife": "6 hours"
-     },
-     "priceHistory": [
-       {"date": "2023-01-01", "price": 89.99},
-       {"date": "2023-06-01", "price": 79.99}
-     ]
-   }
-   ```
+```json
+{
+  "productId": "P12345",
+  "name": "Wireless Earbuds",
+  "category": "Electronics",
+  "price": 79.99,
+  "attributes": {
+    "color": "white",
+    "batteryLife": "6 hours"
+  },
+  "priceHistory": [
+    { "date": "2023-01-01", "price": 89.99 },
+    { "date": "2023-06-01", "price": 79.99 }
+  ]
+}
+```
 
 2. Customer Order:
-   ```json
-   {
-     "orderId": "O67890",
-     "customerId": "C54321",
-     "orderDate": "2023-09-15",
-     "status": "Shipped",
-     "total": 159.98,
-     "items": [
-       {"productId": "P12345", "quantity": 2, "price": 79.99}
-     ],
-     "paymentInfo": {
-       "method": "Credit Card",
-       "last4": "1234"
-     }
-   }
-   ```
+```json
+{
+  "orderId": "O67890",
+  "customerId": "C54321",
+  "orderDate": "2023-09-15",
+  "status": "Shipped",
+  "total": 159.98,
+  "items": [
+    { "productId": "P12345", "quantity": 2, "price": 79.99 }
+  ],
+  "paymentInfo": {
+    "method": "Credit Card",
+    "last4": "1234"
+  }
+}
+```
 
 3. Customer Review:
-   ```json
-   {
-     "reviewId": "R13579",
-     "productId": "P12345",
-     "customerId": "C54321",
-     "rating": 4,
-     "comment": "Great sound quality, but battery life could be better.",
-     "date": "2023-09-20"
-   }
-   ```
+```json
+{
+  "reviewId": "R13579",
+  "productId": "P12345",
+  "customerId": "C54321",
+  "rating": 4,
+  "comment": "Great sound quality, but battery life could be better.",
+  "date": "2023-09-20"
+}
+```
 
 4. Inventory:
-   ```json
-   {
-     "productId": "P12345",
-     "quantity": 500,
-     "lastUpdated": "2023-09-18"
-   }
-   ```
+```json
+{
+  "productId": "P12345",
+  "quantity": 500,
+  "lastUpdated": "2023-09-18"
+}
+```
 
 ## Architecture
 
@@ -176,3 +177,4 @@ Look into using AWS Glue and Athena in combination with S3 to make the archived 
     'Creating a separate table for old orders doesn\'t leverage the benefits of S3 for long-term storage.'
     ]"
 />
+
