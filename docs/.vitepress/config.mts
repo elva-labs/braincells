@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Elva Braincells",
+  title: "Braincells",
   base: "/braincells/",
   description: "Learn AWS Serverless with resources by the experts at Elva.",
   head: [
@@ -10,7 +10,7 @@ export default defineConfig({
     ["link", { rel: "icon", href: "./favicon.ico" }],
   ],
   themeConfig: {
-    logo: "./assets/elva-logo-transparent.png",
+    logo: "./assets/elva-logo-outline.png",
     nav: [
       {
         text: "Serverless on AWS",
@@ -156,7 +156,7 @@ export default defineConfig({
           items: [
             {
               text: "Storage First",
-              link: "/serverless-challenges/event-driven/storage-first"
+              link: "/serverless-challenges/event-driven/storage-first-pattern"
             },
             {
               text: "Claim Check Pattern",

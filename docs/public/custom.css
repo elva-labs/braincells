@@ -1,4 +1,18 @@
 :root {
+  --elva-blue: #39f4ff;
+  --elva-blue-darker: #41afff;
+  --elva-blue-brighter: #7ff8ff;
+  --elva-pink: #faa7e5;
+  --elva-pink-darker: #c591c1;
+  --elva-pink-brighter: #ffcbf9;
+  --elva-yellow: #fbf65f;
+  --elva-yellow-darker: #e3de59;
+  --elva-yellow-brighter: #fffc94;
+
+  --vp-c-brand-1: var(--elva-pink);
+  --vp-c-brand-2: var(--elva-pink-brighter);
+  --vp-c-brand-3: var(--elva-pink-darker);
+
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #39F4FF, #FAA7E5);
   --vp-home-hero-image-background-image: linear-gradient(-120deg, #39F4FF 10%, #FAA7E5 60%);

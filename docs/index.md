@@ -5,9 +5,9 @@ layout: home
 hero:
   name: Elva Braincells
   text: Handcrafted Knowledge Base
-  tagline: Learn the tech to excel in the cloud
+  tagline: Learn the ways to excel in the cloud
   image: 
-    src: ./assets/elva-logo-transparent.png
+    src: ./assets/elva-logo-outline.svg
     alt: Elva Logo
   actions:
     - theme: brand
@@ -18,19 +18,29 @@ hero:
       link: /serverless-challenges/outline
 
 features:
-  - icon: 
+  - title: What is this?
+    icon:
+      src: ./assets/elva-yellow.png
+      width: 130
+    details: Elva Braincells is a free learning resource provided by Elva, a collection of serverless experts specializing on AWS.
+    linkText: Our website
+    link: https://elva-group.com/
+  - title: Serverless on AWS
+    icon: 
       src: ./assets/lambda.svg
-    title: Serverless on AWS
     details: This course takes you through the most important parts about Serverless and the AWS services revolving around it. It includes important reading and a handfull of exercises.
+    linkText: Learn the basics
     link: /serverless-aws/outline
-  - icon: 
+  - title: Serverless Challenges
+    icon: 
       src: ./assets/dynamodb.svg
-    title: Serverless Challenges
     details: Learn about and try to face some of the common challenges we see in the AWS space. This is a collection of common architectural challenges our developers face every day.
+    linkText: Challenge yourself
     link: /serverless-challenges/outline
-  - icon: 
-      src: ./assets/ecs.svg
-    title: Containerization
-    details: This course details the intricate and scary world of containerization. You'll learn about Docker and Kubernetes with exercises and quizes to keep you engaged.
-    link: /containers/outline
+  # - title: Containerization
+  #   icon: 
+  #     src: ./assets/ecs.svg
+  #   details: This course details the intricate and scary world of containerization. You'll learn about Docker and Kubernetes with exercises and quizes to keep you engaged.
+  #   linkText: Get a grasp on containers
+  #   link: /containers/outline
 ---

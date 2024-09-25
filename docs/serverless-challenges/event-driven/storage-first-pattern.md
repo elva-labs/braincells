@@ -22,7 +22,7 @@ Your task is to design a serverless solution that immediately stores incoming me
 
 ## Architecture
 
-![Architecture Diagram](./storage-first.png)
+![Architecture Diagram](./storage-first-pattern.png)
 
 ## Hints
 
@@ -107,3 +107,7 @@ You can implement robust error handling using Lambda Destinations:
   'Exponential backoff doesn\'t involve changing the Lambda memory allocation.'
   ]"
 />
+
+## Additional Reading
+
+* Jimmy Dahlqvist has written about storage first in his [Serverless Patterns post](https://jimmydqv.com/serverless-patterns/)

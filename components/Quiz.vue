@@ -78,7 +78,8 @@ export default {
 
 .quiz button {
   border-color: var(--vp-button-brand-border);
-  color: var(--vp-button-brand-text);
+  color: #1b1b1f;
+  font-weight: 400;
   background-color: var(--vp-button-brand-bg);
   border-radius: 20px;
   padding: 0 20px;
@@ -94,15 +95,13 @@ export default {
 }
 
 .quiz button.correct {
-  background-color: green;
-  color: white;
-  border-color: green;
+  background-color: var(--vp-c-green-3);
+  color: rgba(255, 255, 245, 0.86);
 }
 
 .quiz button.wrong {
-  background-color: red;
-  color: white;
-  border-color: red;
+  background-color: var(--vp-c-red-3);
+  color: rgba(255, 255, 245, 0.86);
 }
 
 .quiz button:disabled {
