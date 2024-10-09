@@ -4,6 +4,8 @@ import Quiz from "../../../components/Quiz.vue"
 
 # The Storage First Pattern
 
+### Challenge Level: 1
+
 In this challenge, you'll implement the Storage First Pattern. This pattern is crucial for ensuring reliable message processing in serverless architectures, especially when dealing with high-volume or critical data ingestion scenarios.
 
 ## Challenge Description

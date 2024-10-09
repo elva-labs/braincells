@@ -90,7 +90,6 @@ export default {
 
 .quiz button:hover {
   border-color: var(--vp-button-brand-hover-border);
-  color: var(--vp-button-brand-hover-text);
   background-color: var(--vp-button-brand-hover-bg);
 }
 

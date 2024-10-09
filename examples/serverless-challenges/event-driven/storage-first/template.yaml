@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  storage-first
+
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-s3-bucket"
+
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      DefinitionBody:
+        swagger: '2.0'
+        info:
+          title:
+            Ref: AWS::StackName
+        paths:
+          /{bucket}/{object}:
+            get:
+              parameters:
+                - name: bucket
+                  in: path
+                  required: true
+                  type: string
+                - name: object
+                  in: path
+                  required: true
+                  type: string
+              x-amazon-apigateway-integration:
+                credentials:
+                  Fn::GetAtt: [S3AccessRole, Arn]
+                type: aws
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:s3:path/{bucket}/{object}
+                httpMethod: GET
+                responses:
+                  default:
+                    statusCode: 200
+                requestParameters:
+                  integration.request.path.bucket: method.request.path.bucket
+                  integration.request.path.object: method.request.path.object
+
+  DownloadFile:
+    Type: AWS::Serverless::Function 
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: download_file
+    Properties:
+      CodeUri: ./
+      Handler: bootstrap
+      Runtime: provided.al2
+      Architectures:
+        - arm64
+      Environment:
+        Variables:
+          BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
+      Events:
+        ApiEvent:
+          Type: Api 
+          Properties:
+            Path: /download
+            Method: get
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Sub "${AWS::StackName}-s3-bucket"
+
+Outputs:
+  S3BucketName:
+    Description: S3 Bucket Name
+    Value: !Ref MyS3Bucket
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  HelloWorldFunction:
+    Description: Hello World Lambda Function ARN
+    Value: !GetAtt HelloWorldFunction.Arn

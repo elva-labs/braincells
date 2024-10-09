@@ -4,6 +4,8 @@ import Quiz from "../../../components/Quiz.vue"
 
 # Data Patterns with DynamoDB
 
+### Challenge Level: ?
+
 In this challenge, you'll implement advanced data patterns using Amazon DynamoDB. These patterns are for handling the complex data requirements of high-traffic, large-scale applications such as e-commerce platforms. DynamoDB's unique features and capabilities make it an ideal choice for ensuring efficient data storage, retrieval, and management in scenarios where performance and scalability are important.
 
 ## Challenge Description

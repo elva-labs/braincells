@@ -4,7 +4,9 @@ import Quiz from "../../../components/Quiz.vue"
 
 # Store and serve large media files
 
-In this challenge, you'll implement a serverless solution to handle large media files. This pattern is often used when dealing with sizeable files such as images or videos that need to be stored securely and served efficiently. It's a common requirement in modern web and mobile applications.
+### Challenge Level: 5
+
+In this challenge, you'll implement a serverless solution to handle large media files. This pattern is often used when dealing with for example images or videos that need to be stored securely and served efficiently. It's a common requirement in modern web and mobile applications.
 
 ## Challenge Description
 
@@ -107,3 +109,6 @@ We have an example for this challenge over [here](https://github.com/elva-labs/b
     'Fargate is for running containers without managing servers, but it\'s not used for simple serverless code execution like Lambda.'
     ]"
 />
+
+## Additional Reading
+

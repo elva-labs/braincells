@@ -4,6 +4,8 @@ import Quiz from "../../../components/Quiz.vue"
 
 # The Claim Check Pattern
 
+### Challenge Level: 2
+
 In this challenge, you'll implement the Claim Check pattern. The Claim Check pattern is often used when the data that needs to flow through the system is too big for common event driven services to handle. This is a common occurrence when working with legacy systems.
 
 ## Challenge Description

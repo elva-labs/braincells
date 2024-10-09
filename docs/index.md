@@ -15,7 +15,7 @@ hero:
       link: /serverless-aws/outline
     - theme: alt
       text: Serverless Challenges
-      link: /serverless-challenges/outline
+      link: /serverless-challenges
 
 features:
   - title: What is this?
@@ -36,7 +36,7 @@ features:
       src: ./assets/dynamodb.svg
     details: Learn about and try to face some of the common challenges we see in the AWS space. This is a collection of common architectural challenges our developers face every day.
     linkText: Challenge yourself
-    link: /serverless-challenges/outline
+    link: /serverless-challenges
   # - title: Containerization
   #   icon: 
   #     src: ./assets/ecs.svg

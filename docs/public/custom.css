@@ -9,6 +9,8 @@
   --elva-yellow-darker: #e3de59;
   --elva-yellow-brighter: #fffc94;
 
+  --elva-text-dark: #1b1b1f;
+
   --vp-c-brand-1: var(--elva-pink);
   --vp-c-brand-2: var(--elva-pink-brighter);
   --vp-c-brand-3: var(--elva-pink-darker);

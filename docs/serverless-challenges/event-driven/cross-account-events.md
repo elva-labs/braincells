@@ -4,6 +4,8 @@ import Quiz from "../../../components/Quiz.vue"
 
 # Cross Account Events
 
+### Challenge Level: 3
+
 In this challenge, you'll implement Cross Account Events using Amazon EventBridge. This pattern is useful when you need to share events between different AWS accounts, allowing for more flexible and scalable architectures in multi-account environments.
 
 ## Challenge Description
@@ -48,10 +50,10 @@ Ensure that the IAM roles in both accounts have the necessary permissions to int
 ## Resources
 
 - [Amazon EventBridge User Guide](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html)
-- [Sending and receiving Amazon EventBridge events between AWS accounts](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html)
 - [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
-- [EventBridge Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)
-- [EventBridge Resource-based Policies](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html)
+- [Sending and receiving Amazon EventBridge events between AWS accounts](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html)
+- [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)
+- [Using resource-based policies for Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html)
 
 ## Quiz
 

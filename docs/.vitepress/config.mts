@@ -16,13 +16,13 @@ export default defineConfig({
         text: "Serverless on AWS",
         link: "/serverless-aws/outline",
       },
-      {
-        text: "Containerization",
-        link: "/containers/outline",
-      },
+      // {
+      //   text: "Containerization",
+      //   link: "/containers",
+      // },
       {
         text: "Serverless Challenges",
-        link: "/serverless-challenges/outline",
+        link: "/serverless-challenges",
       },
     ],
     sidebar: {
@@ -145,10 +145,10 @@ export default defineConfig({
         },
       ],
 
-      "/containers/": [{ text: "Outline", link: "/containers/outline" }],
+      // "/containers/": [{ text: "Outline", link: "/containers" }],
 
       "/serverless-challenges/": [
-        { text: "Outline", link: "/serverless-challenges/outline" },
+        { text: "Serverless Challenges", link: "/serverless-challenges" },
 
         {
           text: "Event Driven Architectures",
@@ -159,21 +159,67 @@ export default defineConfig({
               link: "/serverless-challenges/event-driven/storage-first-pattern"
             },
             {
+              text: "Fan-Out Pattern",
+              link: "/serverless-challenges/event-driven/fan-out-pattern"
+            },
+            {
               text: "Claim Check Pattern",
               link: "/serverless-challenges/event-driven/claim-check-pattern"
             },
             {
               text: "Cross Account Events",
               link: "/serverless-challenges/event-driven/cross-account-events"
-            }
+            },
           ]
         },
 
-        // Harder, should probably be renamed
+        {
+          text: "Orchestration and Workflow",
+          link: "/serverless-challenges/orchestration-and-workflow",
+          items: [
+            {
+              text: "Scheduled Jobs",
+              link: "/serverless-challenges/orchestration-and-workflow/scheduled-jobs"
+            },
+            {
+              text: "Circuit Breaker Step Functions",
+              link: "/serverless-challenges/orchestration-and-workflow/circuit-breaker"
+            },
+            {
+              text: "Retry and Backoff Step Functions",
+              link: "/serverless-challenges/orchestration-and-workflow/retry-and-backoff"
+            },
+            {
+              text: "Queue Load Leveling",
+              link: "/serverless-challenges/orchestration-and-workflow/queue-load-leveling"
+            }
+
+          ]
+        },
+
+        {
+          text: "APIs",
+          link: "/serverless-challenges/apis",
+          items: [
+            {
+              text: "Securing an API Gateway",
+              link: "/serverless-challenges/apis/securing-api-gateway"
+            },
+            {
+              text: "Securing Lambda Function URLs",
+              link: "/serverless-challenges/apis/securing-lambda-function-urls"
+            },
+          ]
+        },
+
         {
           text: "Data Persistance and Storage",
           link: "/serverless-challenges/data-persistance-and-storage",
           items: [
+            {
+              text: "Serverless ETL",
+              link: "/serverless-challenges/data-persistance-and-storage/serverless-etl",
+            },
             {
               text: "Store and serve large media files",
               link: "/serverless-challenges/data-persistance-and-storage/store-and-serve-large-media-files",
