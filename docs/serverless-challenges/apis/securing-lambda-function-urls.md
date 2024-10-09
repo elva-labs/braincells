@@ -27,7 +27,7 @@ Your task is to design and implement a comprehensive security solution for Lambd
 
 ## Architecture
 
-![Architecture Diagram](./securing-lambda-function-urls.png)
+<!-- ![Architecture Diagram](./securing-lambda-function-urls.png) -->
 
 ## Hints
 

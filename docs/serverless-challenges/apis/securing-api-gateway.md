@@ -27,7 +27,7 @@ Your task is to design and implement a comprehensive security solution for an AP
 
 ## Architecture
 
-![Architecture Diagram](./securing-api-gateway.png)
+<!-- ![Architecture Diagram](./securing-api-gateway.png) -->
 
 ## Hints
 

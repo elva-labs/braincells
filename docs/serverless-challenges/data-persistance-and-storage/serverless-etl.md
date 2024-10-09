@@ -27,7 +27,7 @@ Your task is to design and implement a serverless ETL pipeline that extracts dat
 
 ## Architecture
 
-![Architecture Diagram](./simple-serverless-etl.png)
+<!-- ![Architecture Diagram](./simple-serverless-etl.png) -->
 
 ## Hints
 

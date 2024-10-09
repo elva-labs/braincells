@@ -23,7 +23,7 @@ Your task is to design a serverless workflow using AWS Step Functions that incor
 
 ## Architecture
 
-![Architecture Diagram](./retry-backoff-step-functions.png)
+<!-- ![Architecture Diagram](./retry-backoff-step-functions.png) -->
 
 ## Hints
 

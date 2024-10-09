@@ -25,7 +25,7 @@ The circuit breaker should protect a potentially unreliable operation (e.g., cal
 
 ## Architecture
 
-![Architecture Diagram](./circuit-breaker-step-functions.png)
+<!-- ![Architecture Diagram](./circuit-breaker-step-functions.png) -->
 
 ## Hints
 

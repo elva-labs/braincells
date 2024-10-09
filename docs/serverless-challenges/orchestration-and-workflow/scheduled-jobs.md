@@ -38,7 +38,7 @@ Each job should perform a simple task, such as logging a timestamp or incrementi
 
 ## Architecture
 
-![Architecture Diagram](./serverless-cron-jobs.png)
+<!-- ![Architecture Diagram](./serverless-cron-jobs.png) -->
 
 ## Hints
 

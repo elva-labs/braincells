@@ -23,7 +23,7 @@ Your task is to design a serverless solution that uses a queue to handle incomin
 
 ## Architecture
 
-![Architecture Diagram](./queue-load-leveling.png)
+<!-- ![Architecture Diagram](./queue-load-leveling.png) -->
 
 ## Hints
 
