@@ -26,7 +26,7 @@ Your task is to design a serverless solution that immediately stores incoming me
 
 ## Architecture
 
-![Architecture Diagram](./storage-first-pattern.png)
+![Architecture Diagram](./storage-first.png)
 
 ## Hints
 

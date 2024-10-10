@@ -156,15 +156,15 @@ export default defineConfig({
           items: [
             {
               text: "Storage First",
-              link: "/serverless-challenges/event-driven/storage-first-pattern"
+              link: "/serverless-challenges/event-driven/storage-first"
             },
             {
-              text: "Fan-Out Pattern",
-              link: "/serverless-challenges/event-driven/fan-out-pattern"
+              text: "Fan-Out",
+              link: "/serverless-challenges/event-driven/fan-out"
             },
             {
-              text: "Claim Check Pattern",
-              link: "/serverless-challenges/event-driven/claim-check-pattern"
+              text: "Claim Check",
+              link: "/serverless-challenges/event-driven/claim-check"
             },
             {
               text: "Cross Account Events",

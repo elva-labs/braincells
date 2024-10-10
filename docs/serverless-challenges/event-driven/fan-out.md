@@ -2,7 +2,7 @@
 import Quiz from "../../../components/Quiz.vue"
 </script>
 
-# The Fan-Out Pattern
+# Fan-Out
 
 ### Challenge Level: 2
 
@@ -23,7 +23,7 @@ Your task is to design a serverless solution that receives messages from a singl
 
 ## Architecture
 
-![Architecture Diagram](./fan-out-pattern.png)
+![Architecture Diagram](./fan-out.png)
 
 ## Hints
 

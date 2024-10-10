@@ -2,7 +2,7 @@
 import Quiz from "../../../components/Quiz.vue"
 </script>
 
-# The Claim Check Pattern
+# Claim Check
 
 ### Challenge Level: 2
 
@@ -24,7 +24,7 @@ Your task is to design a serverless solution that stores the data that is too la
 
 ## Architecture
 
-![Architecture Diagram](./claim-check-pattern.png)
+![Architecture Diagram](./claim-check.png)
 
 ## Hints
 
