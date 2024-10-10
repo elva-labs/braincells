@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   storage-first
@@ -6,57 +6,83 @@ Description: >
 Globals:
   Function:
     Timeout: 3
-    MemorySize: 128
+    MemorySize: 256
     LoggingConfig:
       LogFormat: JSON
 
 Resources:
-  MyS3Bucket:
+  StorageBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${AWS::StackName}-s3-bucket"
+      BucketName: !Sub "${AWS::StackName}-storage"
 
-  MyApi:
+  Api:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: prod
+      StageName: Prod
       DefinitionBody:
-        swagger: '2.0'
+        openapi: "3.0.1"
         info:
           title:
             Ref: AWS::StackName
+          version: "1.0"
         paths:
-          /{bucket}/{object}:
-            get:
+          /{object}:
+            put:
+              summary: Upload an object to S3
               parameters:
-                - name: bucket
-                  in: path
-                  required: true
-                  type: string
                 - name: object
                   in: path
                   required: true
-                  type: string
+                  schema:
+                    type: string
+              requestBody:
+                content:
+                  application/octet-stream:
+                    schema:
+                      type: string
+                      format: binary
+              responses:
+                "200":
+                  description: Successful upload
               x-amazon-apigateway-integration:
-                credentials:
-                  Fn::GetAtt: [S3AccessRole, Arn]
-                type: aws
-                uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:s3:path/{bucket}/{object}
-                httpMethod: GET
+                credentials: !GetAtt S3AccessRole.Arn
+                uri: !Sub "arn:aws:apigateway:${AWS::Region}:s3:path/${AWS::StackName}-storage/{object}"
                 responses:
                   default:
                     statusCode: 200
                 requestParameters:
-                  integration.request.path.bucket: method.request.path.bucket
                   integration.request.path.object: method.request.path.object
+                passthroughBehavior: when_no_match
+                httpMethod: PUT
+                type: aws
 
-  DownloadFile:
-    Type: AWS::Serverless::Function 
+  S3AccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: S3AccessPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                Resource: !Sub "arn:aws:s3:::${StorageBucket}/*"
+
+  BucketNotificationFunction:
+    Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: rust-cargolambda
       BuildProperties:
-        Binary: download_file
+        Binary: notification
     Properties:
       CodeUri: ./
       Handler: bootstrap
@@ -65,24 +91,18 @@ Resources:
         - arm64
       Environment:
         Variables:
-          BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
+          BUCKET_NAME: !Sub "${AWS::StackName}-storage"
       Events:
-        ApiEvent:
-          Type: Api 
+        S3ObjectCreated:
+          Type: S3
           Properties:
-            Path: /download
-            Method: get
+            Bucket: !Ref StorageBucket
+            Events: s3:ObjectCreated:*
       Policies:
-        - S3CrudPolicy:
-            BucketName: !Sub "${AWS::StackName}-s3-bucket"
+        - S3ReadPolicy:
+            BucketName: !Sub "${AWS::StackName}-storage"
 
 Outputs:
-  S3BucketName:
-    Description: S3 Bucket Name
-    Value: !Ref MyS3Bucket
-  HelloWorldApi:
-    Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: Hello World Lambda Function ARN
-    Value: !GetAtt HelloWorldFunction.Arn
+  ApiUrl:
+    Description: URL of your API endpoint
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

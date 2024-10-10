@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   backend
@@ -34,7 +34,7 @@ Resources:
       BucketName: !Sub "${AWS::StackName}-s3-bucket"
 
   DownloadFile:
-    Type: AWS::Serverless::Function 
+    Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: rust-cargolambda
       BuildProperties:
@@ -50,7 +50,7 @@ Resources:
           BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
       Events:
         ApiEvent:
-          Type: Api 
+          Type: Api
           Properties:
             Path: /download
             Method: get
@@ -59,7 +59,7 @@ Resources:
             BucketName: !Sub "${AWS::StackName}-s3-bucket"
 
   GetPresignedUrl:
-    Type: AWS::Serverless::Function 
+    Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: rust-cargolambda
       BuildProperties:
@@ -76,7 +76,7 @@ Resources:
           BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
       Events:
         ApiEvent:
-          Type: Api 
+          Type: Api
           Properties:
             Path: /url
             Method: get
@@ -87,7 +87,7 @@ Resources:
             TableName: !Ref MyDynamoDBTable
 
   GetUploadedFiles:
-    Type: AWS::Serverless::Function 
+    Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: rust-cargolambda
       BuildProperties:
@@ -103,7 +103,7 @@ Resources:
           TABLE_NAME: !Ref MyDynamoDBTable
       Events:
         ApiEvent:
-          Type: Api 
+          Type: Api
           Properties:
             Path: /files
             Method: get

@@ -1,9 +1,7 @@
-# More information about the configuration file can be found here:
-# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
 version = 0.1
 
 [default.global.parameters]
-stack_name = "persistance-and-storage"
+stack_name = "store-and-serve-large-media-files"
 
 [default.build.parameters]
 cached = true
@@ -17,7 +15,7 @@ lint = true
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
 resolve_s3 = true
-s3_prefix = "persistance-and-storage"
+s3_prefix = "store-and-serve-large-media-files"
 region = "eu-north-1"
 image_repositories = []
 
