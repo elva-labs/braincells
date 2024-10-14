@@ -1,9 +1,11 @@
+mod models;
+
 use aws_lambda_events::event::s3::S3Event;
-use aws_sdk_dynamodb::types::AttributeValue;
 use aws_sdk_dynamodb::Client as DynamoDbClient;
 use aws_sdk_s3::Client as S3Client;
 use lambda_runtime::{run, service_fn, tracing, Error, LambdaEvent};
-use serde_json::json;
+use models::S3ObjectMetadata;
+use serde_dynamo::to_item;
 use std::env;
 
 struct AppState {
@@ -14,9 +16,9 @@ struct AppState {
 
 async fn function_handler(event: LambdaEvent<S3Event>, state: &AppState) -> Result<(), Error> {
     for record in event.payload.records {
-        let bucket = record.s3.bucket.name.unwrap_or_default();
-        let key = record.s3.object.key.unwrap_or_default();
-        let size = record.s3.object.size.unwrap_or_default();
+        let bucket = record.s3.bucket.name.ok_or("Missing bucket name")?;
+        let key = record.s3.object.key.ok_or("Missing object key")?;
+        let size = record.s3.object.size.ok_or("Missing object size")?;
 
         // Get object metadata from S3
         let head_object = state
@@ -34,49 +36,29 @@ async fn function_handler(event: LambdaEvent<S3Event>, state: &AppState) -> Resu
             .unwrap_or_default();
 
         // Prepare DynamoDB item
-        let item = json!({
-            "pk": key,
-            "sk": last_modified,
-            "id": format!("{}:{}", bucket, key),
-            "bucket": bucket,
-            "key": key,
-            "size": size.to_string(),
-            "content_type": content_type,
-            "last_modified": last_modified,
-        });
+        let item = S3ObjectMetadata {
+            pk: key.clone(),
+            sk: last_modified.clone(),
+            id: format!("{}:{}", bucket, key),
+            size: size.to_string(),
+            bucket,
+            key,
+            content_type,
+            last_modified,
+        };
 
         // Put item in DynamoDB
         let put_item_result = state
             .dynamodb_client
             .put_item()
             .table_name(&state.table_name)
-            .set_item(Some(convert_to_attribute_values(item)))
+            .set_item(Some(to_item(&item).unwrap()))
             .send()
             .await?;
 
         println!("Put item result: {:?}", put_item_result);
     }
     Ok(())
-}
-
-fn convert_to_attribute_values(
-    json: serde_json::Value,
-) -> std::collections::HashMap<String, AttributeValue> {
-    json.as_object()
-        .unwrap()
-        .iter()
-        .map(|(k, v)| {
-            (
-                k.clone(),
-                match v {
-                    serde_json::Value::String(s) => AttributeValue::S(s.clone()),
-                    serde_json::Value::Number(n) => AttributeValue::N(n.to_string()),
-                    serde_json::Value::Bool(b) => AttributeValue::Bool(*b),
-                    _ => AttributeValue::Null(true),
-                },
-            )
-        })
-        .collect()
 }
 
 #[tokio::main]

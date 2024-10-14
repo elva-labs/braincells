@@ -1,20 +1,31 @@
 # Serverless Challenges
 
-Welcome to the Serverless Challenges Course. We have distilled some of the common challenges our engineers face on a daily basis into challenges ripe for the solving. 
+Welcome to the Serverless Challenges Course.
+We have distilled some of the common challenges our engineers face on a daily basis into challenges ripe for the solving. 
 
 ## What to expect
 
-Note that the challenges are not tutorials! They're rarely step by step instructions for you to follow and check of your list. They're written to make you think about the solution and build it yourself. The course is framework and language agnostic so feel free to choose whatever you're comfortable with or want to learn (the example solutions are often provided in rust because that's what I was learning when I wrote this!). 
+These challenges are not tutorials!
+They're rarely step by step instructions to simply follow.
+They're written to make you think about the solution and build it yourself.
+The course is framework and language agnostic so feel free to choose whatever you're comfortable with or want to learn (the example solutions are often provided in rust because that's what I was learning when I wrote this!). 
 
-Challenges usually start with covering what you're about to learn and then the challenge is presented. The challenges is often accompanied by an example architecture and some hints that will put you on the right path. 
+Challenges usually start with covering what you're about to learn and then the challenge is presented.
+The challenges is often accompanied by an example architecture and some hints that will put you on the right path. 
 
-There are no sure "right" answers to most of these although we do present example solutions. In the end they're just that; examples. If the problem is solved and the solution is working as expected count the exercise done.
+There are no sure "right" answers to most of these although we do present example solutions.
+In the end they're just that; examples.
+If the problem is solved and the solution is working as expected count the exercise done.
 
 ## Course Overview
 
-You're free to pick and choose the order you want to do the challenges. There is no inherent structure here. Start with an area you're interested in. The difficulty can vary so if you get completely stuck please look at an example solution or try another course.
+You're free to pick and choose the order you want to do the challenges.
+There is no inherent structure here.
+Start with an area you're interested in.
+The difficulty varies, if you get completely stuck look at an example solution or try another challenge.
 
-We rank the challenges from level 1-5 but these are estimates. The difficulty will of course be different if you have experience with those type of technologies already.
+We rank the challenges from level 1-5 but these are estimates.
+The difficulty will of course be different if you have experience with those type of technologies already.
 
 ### Difficulty Explanations
 
@@ -26,7 +37,8 @@ We rank the challenges from level 1-5 but these are estimates. The difficulty wi
 
 ## What You'll Learn
 
-We hope that by the end of this course you'll be confident in meeting the everyday challenges of a serverless developer within AWS. The hands-on experience you'll get from tackling these challenges should set you up especially well if you're a beginner.
+We hope that by the end of this course you'll be confident in meeting the everyday challenges of a serverless developer within AWS.
+The hands-on experience you'll get from tackling these challenges should set you up especially well if you're a beginner.
 
 ## Prerequisites
 
@@ -36,7 +48,8 @@ We hope that by the end of this course you'll be confident in meeting the everyd
 
 ## Getting Started
 
-Choose a section that interests you in the sidebar and get started! If you're lost I'd suggest starting with the event-driven courses.
+Choose a section that interests you in the sidebar and get started!
+If you're lost I'd suggest starting with the event-driven courses.
 
 Happy learning!
 

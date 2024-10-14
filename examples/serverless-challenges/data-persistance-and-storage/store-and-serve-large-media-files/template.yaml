@@ -1,8 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  backend
-  Sample SAM Template for backend
+  store-and-serve-large-media-files
 
 Globals:
   Function:
@@ -10,6 +9,11 @@ Globals:
     MemorySize: 256
     LoggingConfig:
       LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
 
 Resources:
   MyDynamoDBTable:
@@ -40,11 +44,6 @@ Resources:
       BuildProperties:
         Binary: download_file
     Properties:
-      CodeUri: ./
-      Handler: bootstrap
-      Runtime: provided.al2
-      Architectures:
-        - arm64
       Environment:
         Variables:
           BUCKET_NAME: !Sub "${AWS::StackName}-s3-bucket"
@@ -65,11 +64,6 @@ Resources:
       BuildProperties:
         Binary: get_presigned_url
     Properties:
-      CodeUri: ./
-      Handler: bootstrap
-      Runtime: provided.al2
-      Architectures:
-        - arm64
       Environment:
         Variables:
           TABLE_NAME: !Ref MyDynamoDBTable
@@ -93,11 +87,6 @@ Resources:
       BuildProperties:
         Binary: get_uploaded_files
     Properties:
-      CodeUri: ./
-      Handler: bootstrap
-      Runtime: provided.al2
-      Architectures:
-        - arm64
       Environment:
         Variables:
           TABLE_NAME: !Ref MyDynamoDBTable
@@ -118,11 +107,6 @@ Resources:
       BuildProperties:
         Binary: process_s3_upload
     Properties:
-      CodeUri: ./
-      Handler: bootstrap
-      Runtime: provided.al2
-      Architectures:
-        - arm64
       Environment:
         Variables:
           TABLE_NAME: !Ref MyDynamoDBTable

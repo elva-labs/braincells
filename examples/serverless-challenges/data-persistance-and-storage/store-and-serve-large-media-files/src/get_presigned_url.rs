@@ -16,7 +16,7 @@ async fn function_handler(event: Request, state: Arc<AppState>) -> Result<Respon
     let key = event
         .query_string_parameters_ref()
         .and_then(|params| params.first("key"))
-        .unwrap_or("default-filename.txt");
+        .unwrap_or("default-filename.md");
 
     let content_type = event
         .query_string_parameters_ref()

@@ -9,6 +9,11 @@ Globals:
     MemorySize: 256
     LoggingConfig:
       LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
 
 Resources:
   StorageBucket:
@@ -84,14 +89,6 @@ Resources:
       BuildProperties:
         Binary: notification
     Properties:
-      CodeUri: ./
-      Handler: bootstrap
-      Runtime: provided.al2
-      Architectures:
-        - arm64
-      Environment:
-        Variables:
-          BUCKET_NAME: !Sub "${AWS::StackName}-storage"
       Events:
         S3ObjectCreated:
           Type: S3

@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  fan-out
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
+
+Resources:
+  SNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub "${AWS::StackName}-topic"
+
+  EmitterFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: emitter
+    Properties:
+      Environment:
+        Variables:
+          TOPIC_ARN: !GetAtt SNSTopic.TopicArn
+      Policies:
+        - SNSPublishMessagePolicy:
+            TopicName: !Sub "${AWS::StackName}-topic"
+
+  Consumer1Function:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: consumer
+    Properties:
+      Events:
+        SNSMessageReceived:
+          Type: SNS
+          Properties:
+            Topic: !Ref SNSTopic
+      Policies:
+        - SNSCrudPolicy:
+            TopicName: !Sub "${AWS::StackName}-topic"
+
+  Consumer2Function:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: consumer
+    Properties:
+      Events:
+        SNSMessageReceived:
+          Type: SNS
+          Properties:
+            Topic: !Ref SNSTopic
+      Policies:
+        - SNSCrudPolicy:
+            TopicName: !Sub "${AWS::StackName}-topic"
+
+  Consumer3Function:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: consumer
+    Properties:
+      Events:
+        SNSMessageReceived:
+          Type: SNS
+          Properties:
+            Topic: !Ref SNSTopic
+      Policies:
+        - SNSCrudPolicy:
+            TopicName: !Sub "${AWS::StackName}-topic"
+
+Outputs:
+  SNSTopicName:
+    Value: !GetAtt SNSTopic.TopicName
+  EmitterFunctionArn:
+    Value: !GetAtt EmitterFunction.Arn

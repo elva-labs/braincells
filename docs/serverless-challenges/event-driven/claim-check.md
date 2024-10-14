@@ -32,14 +32,6 @@ Your task is to design a serverless solution that stores the data that is too la
 When designing your claim check, consider including metadata that might be useful for processing. This could include file type, size, or a hash of the content. This approach can help downstream processes make decisions without needing to retrieve the full data set.
 :::
 
-::: details Hint 2: Security Considerations
-Implement appropriate access controls on your storage solution. Consider using pre-signed URLs with short expiration times when retrieving the original data. This ensures that even if a claim check is intercepted, it doesn't provide indefinite access to the data.
-:::
-
-::: details Hint 3: Error Handling and Retry Logic
-Implement robust error handling and retry logic in your processing function. Network issues or transient errors could occur when retrieving the original data. Consider using exponential backoff for retries and implement a dead-letter queue for messages that consistently fail processing.
-:::
-
 ## Resources
 
 - [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
@@ -55,10 +47,10 @@ question="What is a primary benefit of using the Claim Check pattern in this sce
 :answers="['Increased data security', 'Improved system scalability', 'Faster data processing', 'Enhanced data compression']"
 :correctAnswer="1"
 :answerInfo="[
- 'While security can be improved, it\'s not the primary benefit in this context.',
- 'Correct! The Claim Check pattern allows systems to handle larger data sets without overwhelming message queues, improving scalability.',
- 'The pattern doesn\'t necessarily speed up data processing.',
- 'The pattern doesn\'t involve data compression.'
+  'It\'s not the primary benefit in this context.',
+  'Correct! The Claim Check pattern allows systems to handle larger data sets without overwhelming message queues, improving scalability.',
+  'The pattern doesn\'t necessarily speed up data processing.',
+  'The pattern doesn\'t involve data compression.'
  ]"
 />
 
@@ -67,10 +59,10 @@ question="In the context of this pattern, what does the 'claim check' typically 
 :answers="['A security token', 'A compression algorithm', 'A reference or pointer to the stored data', 'A data validation checksum']"
 :correctAnswer="2"
 :answerInfo="[
- 'While it can be secured, a claim check is not primarily a security token.',
- 'The pattern doesn\'t involve compression.',
- 'Correct! The claim check serves as a reference to the larger data set stored separately.',
- 'While it might include a checksum, that\'s not the primary purpose of a claim check.'
+  'A claim check is not primarily a security token.',
+  'The pattern doesn\'t involve compression.',
+  'Correct! The claim check serves as a reference to the larger data set stored separately.',
+  'While it might include a checksum, that\'s not the primary purpose of a claim check.'
  ]"
 />
 
@@ -79,10 +71,10 @@ question="What potential issue does the Claim Check pattern help mitigate in mes
 :answers="['Data inconsistency', 'Network latency', 'Message size limitations', 'Data duplication']"
 :correctAnswer="2"
 :answerInfo="[
- 'The pattern doesn\'t directly address data consistency issues.',
- 'While it can affect latency, that\'s not the primary issue it addresses.',
- 'Correct! The pattern helps overcome message size limitations in messaging systems.',
- 'The pattern doesn\'t primarily deal with data duplication.'
+  'The pattern doesn\'t directly address data consistency issues.',
+  'While it can affect latency, that\'s not the primary issue it addresses.',
+  'Correct! The pattern helps overcome message size limitations in messaging systems.',
+  'The pattern doesn\'t primarily deal with data duplication.'
  ]"
 />
 
@@ -91,10 +83,10 @@ question="What is a potential drawback of using the Claim Check pattern?"
 :answers="['Increased storage costs', 'Reduced data security', 'Higher system complexity', 'Slower data retrieval']"
 :correctAnswer="2"
 :answerInfo="[
- 'While storage costs might increase, it\'s not typically considered the main drawback.',
- 'The pattern can actually improve security when implemented correctly.',
- 'Correct! The pattern introduces additional steps and components, increasing overall system complexity.',
- 'While retrieval might take an extra step, it\'s not necessarily slower overall.'
+  'While storage costs might increase, it\'s not typically considered the main drawback.',
+  'The pattern can actually improve security when implemented correctly.',
+  'Correct! The pattern introduces additional steps and components, increasing overall system complexity.',
+  'While retrieval might take an extra step, it\'s not necessarily slower overall.'
  ]"
 />
 
@@ -103,9 +95,9 @@ question="In a well-implemented Claim Check pattern, what should happen if the o
 :answers="['The system should crash', 'The message should be discarded', 'The process should retry with exponential backoff', 'A placeholder should be used instead']"
 :correctAnswer="2"
 :answerInfo="[
- 'Crashing the system would create instability and is not a good practice.',
- 'Discarding the message could lead to data loss.',
- 'Correct! Implementing retry logic with exponential backoff is a robust way to handle temporary unavailability.',
- 'Using a placeholder could lead to data integrity issues.'
+  'Crashing the system would create instability and is not a good practice.',
+  'Discarding the message could lead to data loss.',
+  'Correct! Implementing retry logic with exponential backoff is a robust way to handle temporary unavailability.',
+  'Using a placeholder could lead to data integrity issues.'
  ]"
 />

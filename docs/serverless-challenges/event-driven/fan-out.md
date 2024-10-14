@@ -6,11 +6,14 @@ import Quiz from "../../../components/Quiz.vue"
 
 ### Challenge Level: 2
 
-In this challenge, you'll implement the Fan-out Pattern. This pattern is essential for distributing messages to multiple consumers in serverless architectures, enabling parallel processing and decoupling of components.
+In this challenge, you'll implement the Fan-out Pattern.
+This pattern is essential for distributing messages to multiple consumers in serverless architectures, enabling parallel processing and decoupling of components.
 
 ## Challenge Description
 
-Your task is to design a serverless solution that receives messages from a single source and distributes them to multiple downstream services for parallel processing. You could use either Amazon EventBridge or Amazon SNS as the distribution mechanism. The solution should be scalable and allow for easy addition or removal of downstream consumers.
+Your task is to design a serverless solution that receives messages from a single source and distributes them to multiple downstream services for parallel processing.
+You could use either Amazon EventBridge or Amazon SNS as the distribution mechanism.
+The solution should be scalable and allow for easy addition or removal of downstream consumers.
 
 ## Technical Requirements
 
@@ -28,7 +31,9 @@ Your task is to design a serverless solution that receives messages from a singl
 ## Hints
 
 ::: details Hint 1: Choosing the Right Fan-out Service
-EventBridge and SNS offer similar functionalities. When choosing you should consider the tradeoffs that matter most to your use-case. For the purpose of this challenge any of them will do fine and we would suggest you to try the one you're least familiar with.
+EventBridge and SNS offer similar functionalities.
+When choosing you should consider the tradeoffs that matter most to your use-case.
+For the purpose of this challenge any of them will do fine and we would suggest you to try the one you're least familiar with.
 
 Trade-offs to consider:
 - Only EventBridge offers direct SaaS integrations with for example Salesforce.
@@ -40,11 +45,18 @@ Trade-offs to consider:
 - SNS has exponential backoff up to 23 days while EventBridge has up to 24 hours.
 :::
 
-::: details Hint 2 Handling Partial Failure
-In a fan-out scenario, some consumers might fail while others succeed. Consider how you would handle partial failures. For example:
+::: details Hint 2: Handling Partial Failure
+In a fan-out scenario, some consumers might fail while others succeed.
+Consider how you would handle partial failures.
+For example:
 - Implement robust error handling in each consumer
 - Consider using Dead Letter Queues (DLQs) for failed messages
 - Implement a monitoring solution to track the success/failure of each consumer
+:::
+
+::: details Hint 3: Filter Messages
+The subscriber on a topic can optionally add a message filter which limits what kind of messages that subscriber receives.
+This is an efficient way to have several subscribers on the same topic only react on the message that matters for them.
 :::
 
 ## Resources
@@ -61,9 +73,9 @@ In a fan-out scenario, some consumers might fail while others succeed. Consider 
   :answers="['Increased security', 'Parallel processing of messages', 'Reduced costs', 'Simplified architecture']"
   :correctAnswer="1"
   :answerInfo="[
-    'While it can potentially improve security in some scenarios, this is not the main benefit of the Fan-out Pattern.',
+    'This is not the main benefit of the Fan-out Pattern.',
     'Correct! The Fan-out Pattern allows multiple consumers to process messages in parallel, improving scalability and performance.',
-    'While it can potentially reduce costs in some scenarios, this is not the main benefit of the Fan-out Pattern.',
+    'This is not the main benefit of the Fan-out Pattern.',
     'The Fan-out Pattern may actually add some complexity to the architecture, but the benefits often outweigh this.'
     ]"
 />
@@ -73,7 +85,7 @@ In a fan-out scenario, some consumers might fail while others succeed. Consider 
   :answers="['Ignoring all errors', 'Stopping all consumers if one fails', 'Handling partial failures', 'Reducing the number of consumers']"
   :correctAnswer="2"
   :answerInfo="[
-  'Ignoring all errors is not a good practice and can lead to data loss or inconsistencies.',
+  'Ignoring all errors is not a good practice you silly goose.',
   'Stopping all consumers when one fails defeats the purpose of the Fan-out Pattern and reduces system resilience.',
   'Correct! In a Fan-out Pattern, it\'s important to handle partial failures where some consumers might fail while others succeed. This ensures overall system resilience.',
   'Reducing the number of consumers is not a solution to error handling and goes against the scalability benefits of the Fan-out Pattern.'
@@ -94,4 +106,5 @@ In a fan-out scenario, some consumers might fail while others succeed. Consider 
 
 ## Additional Reading
 
-
+* Yan has a great blog about the [push-pull messaging pattern](https://theburningmonk.com/2018/04/how-to-do-fan-out-and-fan-in-with-aws-lambda/) where he uses fan-in and fan-out
+* Benoit Paul also writes about the [fan-out pattern and goes in depth about using SQS to handle errors](https://www.benoitpaul.com/blog/aws/sns-sqs-fanout/) as well as touching on filtering messages by attribute on the SNS topic

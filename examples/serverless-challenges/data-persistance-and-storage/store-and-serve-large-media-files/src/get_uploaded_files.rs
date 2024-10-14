@@ -1,11 +1,15 @@
-use aws_sdk_dynamodb::types::AttributeValue;
+mod models;
+
+use aws_sdk_dynamodb::Client as DDBClient;
 use lambda_http::{run, service_fn, tracing, Body, Error, Response};
+use models::S3ObjectMetadata;
+use serde_dynamo::from_items;
 use serde_json::json;
 use std::env;
 use std::sync::Arc;
 
 struct AppState {
-    dynamodb_client: aws_sdk_dynamodb::Client,
+    dynamodb_client: DDBClient,
     table_name: String,
 }
 
@@ -19,12 +23,8 @@ async fn function_handler(state: Arc<AppState>) -> Result<Response<Body>, Error>
         .await?;
 
     // Process scanned items
-    let items: Vec<serde_json::Value> = scan_output
-        .items
-        .unwrap_or_default()
-        .into_iter()
-        .map(process_item)
-        .collect();
+    let items: Vec<S3ObjectMetadata> = from_items(scan_output.items.unwrap_or_default())
+        .map_err(|e| Error::from(format!("Failed to deserialize items: {}", e)))?;
 
     // Create response
     let body = json!({
@@ -39,36 +39,6 @@ async fn function_handler(state: Arc<AppState>) -> Result<Response<Body>, Error>
         .map_err(Box::new)?;
 
     Ok(resp)
-}
-
-fn process_item(item: std::collections::HashMap<String, AttributeValue>) -> serde_json::Value {
-    let mut processed_item = json!({});
-    for (key, value) in item {
-        processed_item[key] = match value {
-            AttributeValue::S(s) => json!(s),
-            AttributeValue::N(n) => json!(n),
-            AttributeValue::Bool(b) => json!(b),
-            AttributeValue::M(m) => json!(m
-                .into_iter()
-                .map(|(k, v)| (k, process_attribute_value(v)))
-                .collect::<serde_json::Map<String, serde_json::Value>>()),
-            AttributeValue::L(l) => json!(l
-                .into_iter()
-                .map(process_attribute_value)
-                .collect::<Vec<serde_json::Value>>()),
-            _ => json!(null),
-        };
-    }
-    processed_item
-}
-
-fn process_attribute_value(value: AttributeValue) -> serde_json::Value {
-    match value {
-        AttributeValue::S(s) => json!(s),
-        AttributeValue::N(n) => json!(n),
-        AttributeValue::Bool(b) => json!(b),
-        _ => json!(null),
-    }
 }
 
 #[tokio::main]

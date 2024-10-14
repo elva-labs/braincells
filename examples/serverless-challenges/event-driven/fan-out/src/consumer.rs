@@ -1,10 +1,10 @@
-use aws_lambda_events::event::s3::S3Event;
+use aws_lambda_events::event::sns::SnsEvent;
 use lambda_runtime::{run, service_fn, tracing, Error, LambdaEvent};
 
-async fn function_handler(event: LambdaEvent<S3Event>) -> Result<(), Error> {
+async fn function_handler(event: LambdaEvent<SnsEvent>) -> Result<(), Error> {
     for record in event.payload.records {
-        let key = record.s3.object.key.unwrap_or_default();
-        println!("Item {} triggered notification lambda", key)
+        let message = record.sns.message;
+        println!("Item {} triggered notification lambda", message)
     }
     Ok(())
 }

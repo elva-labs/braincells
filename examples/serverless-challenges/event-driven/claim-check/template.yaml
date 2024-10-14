@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  claim-check
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
+
+Resources:
+  StorageBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-storage"
+
+  ProcessingQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${AWS::StackName}-queue"
+      VisibilityTimeout: 60
+
+  NotificationFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: notification
+    Properties:
+      Environment:
+        Variables:
+          QUEUE_URL: !GetAtt ProcessingQueue.QueueUrl
+      Events:
+        S3ObjectCreated:
+          Type: S3
+          Properties:
+            Bucket: !Ref StorageBucket
+            Events: s3:ObjectCreated:*
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !Sub "${AWS::StackName}-queue"
+
+  ConsumerFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: consumer
+    Properties:
+      Environment:
+        Variables:
+          BUCKET_ARN: !Ref StorageBucket
+      Events:
+        QueueEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt ProcessingQueue.Arn
+      Policies:
+        - SQSPollerPolicy:
+            QueueName: !GetAtt ProcessingQueue.QueueName
+        - S3ReadPolicy:
+            BucketName: !Sub "${AWS::StackName}-storage"
+
+Outputs:
+  BucketName:
+    Value: !GetAtt StorageBucket.DomainName
+  QueueName:
+    Value: !GetAtt ProcessingQueue.Arn
+  NotificationFunction:
+    Value: !GetAtt NotificationFunction.Arn
+  ConsumerFunction:
+    Value: !GetAtt ConsumerFunction.Arn
