@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cross-account-events, account A
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
+
+Parameters:
+  AccountBId:
+    Type: String
+    Description: AWS Account ID for Account B
+
+Resources:
+  EventBusA:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: CrossAccountBus-A
+
+  EventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      EventBusName: !Ref EventBusA
+      EventPattern:
+        source:
+          - com.example.app
+        detail-type:
+          - "Example Event"
+      Targets:
+        - Arn: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus
+          RoleArn: !GetAtt EventBridgeIAMRole.Arn
+          Id: "CrossAccountTarget"
+
+  EventBridgeIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowCrossAccountEventBridge
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: events:PutEvents
+                Resource: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus
+
+  EmitterFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: emitter
+    Properties:
+      Environment:
+        Variables:
+          EVENT_BUS_NAME: !Ref EventBusA
+      Policies:
+        - EventBridgePutEventsPolicy:
+            EventBusName: !Ref EventBusA
+
+Outputs:
+  EventBusArn:
+    Value: !GetAtt EventBusA.Arn
+  EmitterFunctionArn:
+    Value: !GetAtt EmitterFunction.Arn

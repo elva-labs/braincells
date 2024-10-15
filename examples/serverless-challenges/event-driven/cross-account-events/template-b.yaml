@@ -1,0 +1,66 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cross-account-events, account B
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
+
+Parameters:
+  AccountAId:
+    Type: String
+    Description: AWS Account ID for Account A
+
+Resources:
+  EventBusB:
+    Type: AWS::Events::EventBus
+    Properties:
+      Name: CrossAccountBus-B
+
+  EventBusPolicyB:
+    Type: AWS::Events::EventBusPolicy
+    Properties:
+      EventBusName: !Ref EventBusB
+      StatementId: AllowFromAccountA
+      Action: events:PutEvents
+      Principal: !Ref AccountAId
+      Statement:
+        Sid: AllowAccountA
+        Effect: Allow
+        Principal:
+          AWS: !Sub arn:aws:iam::${AccountAId}:root
+        Action: events:PutEvents
+        Resource: !GetAtt EventBusB.Arn
+
+  ConsumerFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: consumer
+    Properties:
+      Events:
+        CrossAccountEvent:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: !Ref EventBusB
+            Pattern:
+              source:
+                - com.example.app
+              detail-type:
+                - "Example Event"
+
+Outputs:
+  EventBusArn:
+    Value: !GetAtt EventBusB.Arn
+  ConsumerFunction:
+    Value: !GetAtt ConsumerFunction.Arn
