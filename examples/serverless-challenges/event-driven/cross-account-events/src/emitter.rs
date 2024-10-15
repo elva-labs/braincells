@@ -1,7 +1,7 @@
 use aws_sdk_eventbridge::{types::PutEventsRequestEntry, Client as EBClient};
 use lambda_runtime::{run, service_fn, tracing, Error, LambdaEvent};
 use serde::Deserialize;
-use serde_json::Value;
+use serde_json::json;
 use std::{env, sync::Arc};
 
 #[derive(Deserialize)]
@@ -16,15 +16,10 @@ async fn function_handler(
     _event: LambdaEvent<EmptyEvent>,
     state: Arc<AppState>,
 ) -> Result<(), Error> {
-    let detail = Value::Object(serde_json::Map::from_iter(vec![(
-        "message".to_string(),
-        Value::String("Hello from Rust Lambda!".to_string()),
-    )]));
-
     let entry = PutEventsRequestEntry::builder()
         .source("com.example.app")
         .detail_type("Example Event")
-        .detail(serde_json::to_string(&detail)?)
+        .detail(json!({"message": "Hello from Rust Lambda!"}).to_string())
         .event_bus_name(&state.event_bus_name)
         .build();
 
