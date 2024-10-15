@@ -32,6 +32,10 @@ Your task is to design a serverless solution that stores the data that is too la
 When designing your claim check, consider including metadata that might be useful for processing. This could include file type, size, or a hash of the content. This approach can help downstream processes make decisions without needing to retrieve the full data set.
 :::
 
+::: details Hint 2: Function and Visibility Timeout
+Make sure the visibility timeout of the SQS Queue is shorter than the function timeout if polling the queue from a lambda.
+:::
+
 ## Resources
 
 - [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
