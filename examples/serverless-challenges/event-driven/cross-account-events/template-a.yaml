@@ -9,9 +9,9 @@ Globals:
     MemorySize: 256
     LoggingConfig:
       LogFormat: JSON
-    CodeUri: ./
+    CodeUri: .
     Handler: bootstrap
-    Runtime: provided.al2
+    Runtime: provided.al2023
     Architectures:
       - arm64
 
@@ -36,7 +36,7 @@ Resources:
         detail-type:
           - "Example Event"
       Targets:
-        - Arn: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus
+        - Arn: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus-B
           RoleArn: !GetAtt EventBridgeIAMRole.Arn
           Id: "CrossAccountTarget"
 
@@ -57,7 +57,7 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: events:PutEvents
-                Resource: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus
+                Resource: !Sub arn:aws:events:${AWS::Region}:${AccountBId}:event-bus/CrossAccountBus-B
 
   EmitterFunction:
     Type: AWS::Serverless::Function

@@ -1,5 +1,15 @@
 # cross-account-events
 
+## Deploying
+
+To deploy and test this example:
+1. Assume into Account A
+  1. `sam build --template-file template-a.yaml`
+  2. `sam deploy --parameter-overrides AccountBId={insert account number here}`
+2. Assume into Account B
+  1. `sam build --template-file template-b.yaml`
+  2. `sam deploy --parameter-overrides AccountAId={insert account number here}`
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders:
 
 - `rust_app/Cargo.toml` - Project configuration file.
