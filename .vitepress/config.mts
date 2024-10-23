@@ -5,7 +5,6 @@ export default defineConfig({
   title: "Braincells",
   description: "Learn AWS Serverless with resources by the experts at Elva.",
   head: [
-    ["link", { rel: "stylesheet", href: "./custom.css" }],
     ["link", { rel: "icon", href: "./favicon.ico" }],
   ],
   srcExclude: ['./components/**/*', './examples/**/*', './exercises/**/*'],
