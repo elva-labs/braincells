@@ -16,10 +16,6 @@ export default defineConfig({
         text: "Serverless on AWS",
         link: "/serverless-aws/outline",
       },
-      // {
-      //   text: "Containerization",
-      //   link: "/containers",
-      // },
       {
         text: "Serverless Challenges",
         link: "/serverless-challenges",
