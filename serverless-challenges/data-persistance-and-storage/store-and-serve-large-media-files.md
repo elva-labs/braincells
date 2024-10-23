@@ -1,5 +1,5 @@
 <script setup>
-import Quiz from "../../../components/Quiz.vue"
+import Quiz from "../../components/Quiz.vue"
 </script>
 
 # Store and serve large media files

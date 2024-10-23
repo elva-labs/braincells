@@ -1,4 +1,4 @@
-# Persistance and Storage - Store and Serve Large Media Files
+# Example Solution - Store and Serve Large Media Files
 
 This project is an example of how to solve this task. The code is written in rust and deployed with AWS SAM.
 

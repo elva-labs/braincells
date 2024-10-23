@@ -1,4 +1,4 @@
-# cross-account-events
+# Example Solution - Cross Account Events
 
 ## Deploying
 

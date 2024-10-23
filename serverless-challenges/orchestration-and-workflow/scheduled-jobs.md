@@ -1,12 +1,12 @@
 <script setup>
-import Quiz from "../../../components/Quiz.vue"
+import Quiz from "../../components/Quiz.vue"
 </script>
 
 # Scheduled Jobs
 
 ### Challenge Level: 2
 
-In this challenge, you'll explore and implement various approaches to setting up and managing serverless cron jobs. Scheduled tasks are crucial in many applications, and serverless architectures offer flexible and scalable ways to handle them.
+In this challenge, you'll explore and implement various approaches to setting up and managing serverless cron jobs. Scheduled tasks are important in many applications, and serverless architectures offer flexible and scalable ways to handle them.
 
 ## Challenge Description
 

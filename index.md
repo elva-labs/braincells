@@ -11,7 +11,7 @@ hero:
     alt: Elva Logo
   actions:
     - theme: brand
-      text: Start Here 
+      text: Serverless on AWS 
       link: /serverless-aws/outline
     - theme: alt
       text: Serverless Challenges

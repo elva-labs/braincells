@@ -1,5 +1,5 @@
 <script setup>
-import Quiz from "../../../components/Quiz.vue"
+import Quiz from "../../components/Quiz.vue"
 </script>
 
 # Securing an API Gateway
