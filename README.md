@@ -1,35 +1,29 @@
 # WORK IN PROGRESS 
 
-> https://elva-labs.github.io/braincells/
+The dev domain is recommended for branch builds.
+Anything pushed on `main` is deployed to both of these:
+
+> https://braincells.dev.elva-group.com/
+> https://braincells.elva-group.com/
 
 ## Project Structure
 
-`tree -d --git-ignore`
+`tree -d --gitignore`
 
 ```bash
 .
 ├── components
-├── docs
-│   ├── containers
-│   │   ├── sub-folders with course material
-│   │   └── outline.md
-│   ├── serverless-aws
-│   │   ├── sub-folders with course material
-│   │   └── outline.md
-│   ├── serverless-challenges
-│   │   └── sub-folders with course material
-│   │   └── outline.md
-│   └── public
-│       └── assets
 ├── examples
-│   ├── containers
-│   │   └── sub-folders with examples
+│   │   // the example solutions
 │   ├── serverless-aws
-│   │   └── sub-folders with examples
 │   └── serverless-challenges
-│       └── sub-folders with examples
-└── exercises
-    ├── first-api
-    ├── image-service
-    └── weather-report
+├── exercises
+│   ├── first-api
+│   ├── image-service
+│   └── weather-report
+├── public
+│   // the markdown for serverless-aws
+├── serverless-aws
+│   // the markdown for serverless-challenges
+└── serverless-challenges
 ```
