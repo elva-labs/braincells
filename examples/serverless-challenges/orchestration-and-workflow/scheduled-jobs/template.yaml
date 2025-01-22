@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  scheduled-jobs
+
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 256
+    LoggingConfig:
+      LogFormat: JSON
+    CodeUri: ./
+    Handler: bootstrap
+    Runtime: provided.al2
+    Architectures:
+      - arm64
+
+Parameters:
+  ScheduledTime:
+    Type: String
+    Default: "2024-10-24T09:05:00"
+    Description: Specific time for the one-time job (UTC)
+
+Resources:
+  # Lambda Function with CloudWatch Events
+  FiveMinuteJob:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: notification
+    Properties:
+      Events:
+        ScheduleEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+            Name: five-minute-job
+            Description: Runs every 5 minutes using CloudWatch Events
+            Enabled: true
+
+  # Lambda Function
+  TwoMinuteJob:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: notification
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-two-minute-job
+
+  OneTimeJob:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: rust-cargolambda
+      BuildProperties:
+        Binary: notification
+    Properties:
+      FunctionName: !Sub ${AWS::StackName}-one-time-job
+
+  # EventBridge Scheduler Role
+  SchedulerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: scheduler.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaInvokePolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource:
+                  - !GetAtt TwoMinuteJob.Arn
+                  - !GetAtt OneTimeJob.Arn
+
+  # EventBridge Scheduler for 2-minute recurring job
+  TwoMinuteSchedule:
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      FlexibleTimeWindow:
+        Mode: "OFF"
+      ScheduleExpression: rate(2 minutes)
+      Target:
+        Arn: !GetAtt TwoMinuteJob.Arn
+        RoleArn: !GetAtt SchedulerRole.Arn
+      State: ENABLED
+
+  # EventBridge Scheduler for one-time job
+  OneTimeSchedule:
+    Type: AWS::Scheduler::Schedule
+    Properties:
+      FlexibleTimeWindow:
+        Mode: "OFF"
+      ScheduleExpression: !Sub "at(${ScheduledTime})"
+      Target:
+        Arn: !GetAtt OneTimeJob.Arn
+        RoleArn: !GetAtt SchedulerRole.Arn
+      State: ENABLED
+
+Outputs:
+  FiveMinuteJobArn:
+    Description: ARN of the 5-minute job Lambda function
+    Value: !GetAtt FiveMinuteJob.Arn
+  TwoMinuteJobArn:
+    Description: ARN of the 2-minute job Lambda function
+    Value: !GetAtt TwoMinuteJob.Arn
+  OneTimeJobArn:
+    Description: ARN of the one-time job Lambda function
+    Value: !GetAtt OneTimeJob.Arn

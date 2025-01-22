@@ -38,9 +38,31 @@ Each job should perform a simple task, such as logging a timestamp or incrementi
 
 ## Architecture
 
-<!-- ![Architecture Diagram](./serverless-cron-jobs.png) -->
+![Architecture Diagram](./scheduled-jobs.png)
 
 ## Hints
+
+::: details Hint 1: Declare CloudWatch Events in-line
+In some IaC frameworks like SAM or Serverless Framework you can set up a cron job with CloudWatch Events directly on the function configuration.
+For example in SAM it looks like this:
+```yaml
+  FiveMinuteJob:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Events:
+        ScheduleEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+            Name: five-minute-job
+            Description: Runs every 5 minutes using CloudWatch Events
+            Enabled: true
+```
+
+Contrary, EventBridge Scheduler schedules need to be set up independently and target the function in question.
+:::
 
 ::: details Hint 1: CloudWatch Events with Lambda (The "Old Way")
 - Use the AWS Management Console, AWS CLI, or AWS SDK to create the CloudWatch Event rule

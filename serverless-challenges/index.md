@@ -64,3 +64,4 @@ Wether you're unsure about serverless or can't get enough of it; this list of gr
 * Lee Gilmore's slightly more enterprise:y [serverless advocacy](https://blog.serverlessadvocate.com/serverless-content-46ef5b562d8e) is both a very refreshing and useful resource
 * [Serverless Land](https://serverlessland.com/) is a great resources for learning about AWS architecture and patterns. Definitely check out David Boyney's [EventBridge Visuals](https://serverlessland.com/serverless/visuals/eventbridge).
 * [BelieveInServerless Discord](https://discord.gg/yq3rJ8SUab) is a community of serverless enthusiasts with rich discussions about a wide variety of topics.
+* Our own Tobias Edvardsson has written about [managing AWS Organizations and multi-account strategies](https://elva-group.com/blog/managing-aws-at-scale-multi-account-strategy/)

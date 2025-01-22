@@ -1,6 +1,6 @@
 # Outline
 
-Building expertise in serverless computing, from a beginner to an advanced level, involves understanding cloud platforms, serverless technologies, and best practices. Below is a curriculum that takes you from "zero to hero" in serverless development:
+Building expertise in serverless computing, from a beginner to an advanced level, involves understanding cloud platforms, serverless technologies, and best practices. Below is a curriculum that takes you from "zero to hero" in serverless development.
 
 ## Module 1: Introduction to Cloud Computing and Serverless
 

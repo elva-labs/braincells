@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Serverless on AWS 
-      link: /serverless-aws/outline
+      link: /serverless-aws
     - theme: alt
       text: Serverless Challenges
       link: /serverless-challenges
@@ -30,7 +30,7 @@ features:
       src: ./assets/lambda.svg
     details: This course takes you through the most important parts about Serverless and the AWS services revolving around it. It includes important reading and a handfull of exercises.
     linkText: Learn the basics
-    link: /serverless-aws/outline
+    link: /serverless-aws
   - title: Serverless Challenges
     icon: 
       src: ./assets/dynamodb.svg

@@ -19,7 +19,7 @@ export default defineConfig({
     nav: [
       {
         text: "Serverless on AWS",
-        link: "/serverless-aws/outline",
+        link: "/serverless-aws",
       },
       {
         text: "Serverless Challenges",
@@ -28,7 +28,7 @@ export default defineConfig({
     ],
     sidebar: {
       "/serverless-aws/": [
-        { text: "Outline", link: "/serverless-aws/outline" },
+        { text: "Serverless on AWS", link: "/serverless-aws/index.html" },
         {
           text: "1. Introduction to AWS",
           items: [
@@ -146,10 +146,8 @@ export default defineConfig({
         },
       ],
 
-      // "/containers/": [{ text: "Outline", link: "/containers" }],
-
       "/serverless-challenges/": [
-        { text: "Serverless Challenges", link: "/serverless-challenges" },
+        { text: "Serverless Challenges", link: "/serverless-challenges/index.html" },
 
         {
           text: "Event Driven Architectures",
