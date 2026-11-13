@@ -14,6 +14,7 @@ export function weatherPollMachine({ stack }: StackContext) {
 
   const pollYr = new tasks.LambdaInvoke(stack, 'PollYR', {
     lambdaFunction: new Function(stack, 'dataPollerYr', {
+      runtime: 'nodejs22.x',
       bind: [YR_ENDPOINT],
       handler: 'src/functions/pollYR.main',
     }),
