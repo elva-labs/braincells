@@ -10,7 +10,9 @@ export function API({ stack }: StackContext) {
     routes: {},
 
     defaults: {
-      function: {},
+      function: {
+        runtime: 'nodejs22.x',
+      },
     },
   });
 

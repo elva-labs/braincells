@@ -15,6 +15,7 @@ export function API({ stack }: StackContext) {
 
     defaults: {
       function: {
+        runtime: 'nodejs22.x',
         bind: [originalImageBucket, transformedImageBucket],
       },
     },
