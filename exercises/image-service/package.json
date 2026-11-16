@@ -14,7 +14,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/uuid": "^9.0.7"
+    "@types/uuid": "^9.0.7",
+    "aws-cdk-lib": "2.224.0",
+    "constructs": "10.3.0",
+    "sst": "2.49.8"
   },
   "dependencies": {
     "@aws-sdk/client-eventbridge": "^3.470.0",

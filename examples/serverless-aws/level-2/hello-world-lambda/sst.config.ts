@@ -9,6 +9,7 @@ export default {
     };
   },
   stacks(app) {
+    app.setDefaultFunctionProps({ runtime: 'nodejs22.x' });
     app.stack(LambdaStack);
   },
 } satisfies SSTConfig;
