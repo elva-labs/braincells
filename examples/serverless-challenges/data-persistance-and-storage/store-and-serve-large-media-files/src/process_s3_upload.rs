@@ -1,10 +1,10 @@
 mod models;
 
-use aws_lambda_events::event::s3::S3Event;
 use aws_sdk_dynamodb::Client as DynamoDbClient;
 use aws_sdk_s3::Client as S3Client;
 use lambda_runtime::{run, service_fn, tracing, Error, LambdaEvent};
 use models::S3ObjectMetadata;
+use serde::Deserialize;
 use serde_dynamo::to_item;
 use std::env;
 
@@ -12,6 +12,34 @@ struct AppState {
     dynamodb_client: DynamoDbClient,
     s3_client: S3Client,
     table_name: String,
+}
+
+#[derive(Deserialize)]
+struct S3Event {
+    #[serde(rename = "Records")]
+    records: Vec<S3EventRecord>,
+}
+
+#[derive(Deserialize)]
+struct S3EventRecord {
+    s3: S3Entity,
+}
+
+#[derive(Deserialize)]
+struct S3Entity {
+    bucket: S3Bucket,
+    object: S3Object,
+}
+
+#[derive(Deserialize)]
+struct S3Bucket {
+    name: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct S3Object {
+    key: Option<String>,
+    size: Option<i64>,
 }
 
 async fn function_handler(event: LambdaEvent<S3Event>, state: &AppState) -> Result<(), Error> {
