@@ -4,9 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-aws-config = { version = "1.5.6", features = ["behavior-version-latest"] }
-aws-sdk-dynamodb = "1.45.0"
-aws-sdk-s3 = "1.49.0"
+aws-config = { version = "1.13.0", features = ["behavior-version-latest"] }
+# Keep the current HTTPS client without enabling the legacy Rustls connector.
+aws-sdk-dynamodb = { version = "1.117.0", default-features = false, features = ["default-https-client", "rt-tokio"] }
+aws-sdk-s3 = { version = "1.144.0", default-features = false, features = ["sigv4a", "http-1x", "default-https-client", "rt-tokio"] }
 aws_lambda_events = "0.15.1"
 lambda_http = "0.13.0"
 lambda_runtime = "0.13.0"
