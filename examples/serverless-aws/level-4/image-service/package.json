@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/uuid": "^9.0.7",
+    "@types/aws-lambda": "^8.10.124",
     "aws-cdk-lib": "2.224.0",
     "constructs": "10.3.0",
     "sst": "2.49.8"
@@ -27,14 +27,21 @@
     "@aws-sdk/credential-providers": "^3.474.0",
     "@aws-sdk/s3-request-presigner": "^3.474.0",
     "@types/md5": "^2.3.5",
+    "http-status-codes": "^2.3.0",
     "lambda-multipart-parser": "^1.0.1",
     "md5": "^2.3.0",
-    "sharp": "^0.33.0",
-    "uuid": "^9.0.1"
+    "sharp": "0.35.5",
+    "uuid": "11.1.1",
+    "zod": "4.6.6"
   },
   "pnpm": {
     "overrides": {
-      "fast-xml-parser@4": "4.5.7"
+      "fast-xml-parser@4": "5.12.0",
+      "sst>zod": "4.6.6",
+      "uuid@<11.1.1": "11.1.1"
+    },
+    "patchedDependencies": {
+      "sst@2.49.8": "../../../../patches/sst@2.49.8.patch"
     }
   }
 }
