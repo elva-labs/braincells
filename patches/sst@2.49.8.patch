@@ -1,0 +1,38 @@
+diff --git a/runtime/handlers/node.js b/runtime/handlers/node.js
+index a70e19e87ac046d5733c5a1b7d7ef8d1a8811c5b..1f77aaddd081f795b5e82ad80e548eadbedaa20a 100644
+--- a/runtime/handlers/node.js
++++ b/runtime/handlers/node.js
+@@ -209,7 +209,9 @@ export const useNodeHandler = () => {
+                     const cmd = [
+                         "npm install",
+                         "--omit=dev",
+-                        "--omit=optional",
++                        ...(installPackages.includes("sharp")
++                            ? ["--include=optional", "--libc=glibc"]
++                            : ["--omit=optional"]),
+                         "--force",
+                         "--platform=linux",
+                         input.props.architecture === "arm_64"
+@@ -219,22 +221,6 @@ export const useNodeHandler = () => {
+                         "--os=linux",
+                         input.props.architecture === "arm_64" ? "--cpu=arm64" : "--cpu=x64",
+                     ];
+-                    if (installPackages.includes("sharp")) {
+-                        /**
+-                         * TODO: This is a workaround for issues that sharp v0.33.0 has
+-                         * with cross platform builds. This can be removed once sharp
+-                         * releases a new version with the fix.
+-                         */
+-                        cmd.push("--force sharp@0.32.6");
+-                        /**
+-                         * Once the above issue is resolved, the code below can be used.
+-                         */
+-                        // cmd.push(
+-                        //   ...input.props.architecture === "arm_64"
+-                        //     ? ["--arch=arm64", "--force @img/sharp-linux-arm64"]
+-                        //     : ["--arch=x64", "--force @img/sharp-linux-x64"],
+-                        // );
+-                    }
+                     await new Promise((resolve, reject) => {
+                         exec(cmd.join(" "), { cwd: input.out }, (error) => {
+                             if (error) {
